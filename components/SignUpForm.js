@@ -52,19 +52,18 @@ function SignUpForm() {
         event.preventDefault()
         setError("")
 
-        if( email.length === 0) { 
+        if( formInfo.email.length === 0) { 
             setError('You must provide a valid email.')
             alert(error)
-            return
         }
 
-        if( password.length === 0) return setError('You must provide a password')
+        if( formInfo.password.length === 0) return setError('You must provide a password')
 
-        if( !validator.isEmail(email)) return setError("You must provide a valid email.")
+        if( !validator.isEmail(formInfo.email)) return setError("You must provide a valid email.")
 
-        if( email !== confirmEmail ) return setError('Email and Confirm Email must match')
+        if( formInfo.email !== formInfo.confirmEmail ) return setError('Email and Confirm Email must match')
 
-        if( password !== confirmPassword ) return setError('Passwords must match')
+        if( formInfo.password !== formInfo.confirmPassword ) return setError('Passwords must match')
 
         try {
             if(firebaseInstance){
