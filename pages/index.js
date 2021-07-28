@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import SignInForm from '../components/SignInForm.js'
 import styled from 'styled-components'
+import SignUpForm from '../components/SignUpForm.js'
 
 
 const Container = styled.div`
@@ -36,7 +36,7 @@ export default function Home() {
         </Head>
 
         <Wrapper>
-          <SignInForm />
+          <SignUpForm />
         </Wrapper>
 
     </Container>
