@@ -8,38 +8,10 @@ import { useAuth } from '../contexts/AuthContext'
 
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
     padding: 5%;
     background-color: gray;
-    border: 20px black;
     border-radius: 15px;
-`
-
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: 16px;
-`
-
-const Error = styled.p`
-    margin: 20px 0;
-    color: white;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-align: center;
-`
-
-const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-left: 1%;
-    padding-right: 1%;
 `
 
 
@@ -55,10 +27,9 @@ const useStyles = makeStyles({
 })
 
 
-function LogIn() {
+function LogIn({ error, setError }) {
     const classes = useStyles()
-    const [error, setError] = useState("")
-    const { login } = useAuth()
+    const { login, logout } = useAuth()
 
     const [formInfo, setFormInfo] = useState({
         email: "",
@@ -75,15 +46,13 @@ function LogIn() {
 
         if( !validator.isEmail(formInfo.email)) return setError("You must provide a valid email.")
 
-        if( formInfo.email !== formInfo.confirmEmail ) return setError('Email and Confirm Email must match')
-
-        if( formInfo.password !== formInfo.confirmPassword ) return setError('Passwords must match')
-
         try {
-                const user = await login(formInfo.email, formInfo.password)
-                console.log('user', user);
+            const user = await login(formInfo.email, formInfo.password)
+        
+            console.log('user', user);
             
         } catch (error) {
+            setError(error.message)
             console.log('error', error)
         }
     }
@@ -99,7 +68,7 @@ function LogIn() {
 
     return (
         <Container>
-            <Form onSubmit={logIn}>
+            <form onSubmit={logIn}>
                 <TextField 
                     className={classes.input} 
                     type='email'
@@ -111,9 +80,9 @@ function LogIn() {
                         handleChange(e.target.id, e.target.value)
                     }}
                     />
-                <Divider className={classes.root}/>
                 <TextField 
-                    className={classes.input} 
+                    className={classes.input}
+                    style={{ paddingBottom: "30px"  }}
                     type='password'
                     id='password'
                     label="Password"
@@ -123,18 +92,22 @@ function LogIn() {
                         handleChange(e.target.id, e.target.value)
                     }}
                     />
-                <Divider />
-                <Error>
-                    {error}
-                </Error>
                 <Button  
+                    style={{ width: "100%"  }}
                     variant="outlined" 
                     type='submit'
-                    style={{width: '80%', align: 'center'}}
                 >
                     Submit
                 </Button>
-            </Form>
+            </form>
+            <Button  
+                    style={{ width: "100%"  }}
+                    variant="outlined" 
+                    type='submit'
+                    onClick={e => logout}
+                >
+                    Log Out
+                </Button>
         </Container>
     )
 

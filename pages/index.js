@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import SignUpForm from '../components/SignUpForm.js'
 import LogIn from '../components/LogIn.js'
 
+import { useAuth } from '../contexts/AuthContext'
 
 const Container = styled.div`
     display: flex;
@@ -61,8 +62,25 @@ const Text = styled.p`
     cursor: pointer;
 `
 
+const Message = styled.p`
+    position: absolute;
+    bottom: 5%;
+    font-weight: 500;
+    letter-spacing: 1px;
+    height: 30px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+`
+
 export default function Home() {
   const [login, setLogin] = useState(true)
+  const [error, setError] = useState("")
+  const [message, setMessage] = useState("Not Signed In")
+
+  const { currentUser } = useAuth()
+
+
 
   return (
     <Container>
@@ -78,18 +96,33 @@ export default function Home() {
             <TextBox>
               <Text 
                 style={{ color: login ? 'black' : 'white', textDecoration: login ? 'none' : 'underline' }}
-                onClick={ e => setLogin(false)}
+                onClick={e => {
+                  setLogin(false);
+                  setError('');
+                }}
               > 
                 Sign Up
               </Text>
               <Text
                 style={{ color: login ? 'white' : 'black', textDecoration: login ? 'underline' : 'none' }}
-                onClick={e => setLogin(true)}
+                onClick={e => {
+                  setLogin(true);
+                  setError('');
+                }}
               >
                 Log In 
               </Text>
             </TextBox>
-            {login ? <LogIn /> : <SignUpForm /> }
+            {login ? 
+              <LogIn error={error} setError={setError}/> 
+              : 
+              <SignUpForm error={error} setError={setError} setMessage={setMessage}/> 
+            }
+
+            {error.length > 0 ?
+                    <Message> {error} </Message> : <Message> {currentUser?.email || 'Not Logged In'} </Message> 
+            } 
+
           </Wrapper>
         </RightBox>
 

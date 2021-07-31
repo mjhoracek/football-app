@@ -19,14 +19,6 @@ const Container = styled.div`
     border-radius: 15px;
 `
 
-const Message = styled.p`
-    font-weight: 500;
-    letter-spacing: 2px;
-    height: 30px;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-`
 
 const useStyles = makeStyles({
     input: {
@@ -40,11 +32,9 @@ const useStyles = makeStyles({
 })
 
 
-function SignUpForm() {
+function SignUpForm({ error, setError, setMessage }) {
     const classes = useStyles()
-    const { signup } = useAuth()
-    const [error, setError] = useState("")
-    const message = "Hello User"
+    const { signup, currentUser } = useAuth()
 
     const [formInfo, setFormInfo] = useState({
         email: "",
@@ -71,17 +61,13 @@ function SignUpForm() {
 
             const user = await signup(formInfo.email, formInfo.password)
             console.log('user', user);
+            setMessage(currentUser.email)
 
         } catch (error) {
+            setError(error.message)
             console.log('error', error)
         }
     }
-
-    const errorChecker = () => {
-        if (error.length === 0) {
-            return        
-    }
-}
 
     const handleChange = (id, value) => {
         setFormInfo({
@@ -147,9 +133,6 @@ function SignUpForm() {
                     Submit
                 </Button>
             </form>
-                {error.length > 0 ?
-                    <Message> {error} </Message> : <Message> {message} </Message> 
-                } 
         </Container>
     )
 
