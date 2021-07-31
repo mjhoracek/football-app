@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import validator from 'validator'
 import styled from 'styled-components'
-
 import { makeStyles } from '@material-ui/core/styles'
 import { TextField, Button, Divider, Typography, Grid, Paper } from '@material-ui/core'
 
@@ -19,14 +18,30 @@ const Container = styled.div`
     border-radius: 15px;
 `
 
-const Message = styled.p`
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 16px;
+`
+
+const Error = styled.p`
+    margin: 20px 0;
+    color: white;
     font-weight: 500;
     letter-spacing: 2px;
-    height: 30px;
     text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
 `
+
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1%;
+    padding-right: 1%;
+`
+
 
 const useStyles = makeStyles({
     input: {
@@ -40,48 +55,39 @@ const useStyles = makeStyles({
 })
 
 
-function SignUpForm() {
+function LogIn() {
     const classes = useStyles()
-    const { signup } = useAuth()
     const [error, setError] = useState("")
-    const message = "Hello User"
+    const { login } = useAuth()
 
     const [formInfo, setFormInfo] = useState({
         email: "",
-        confirmEmail: "",
         password: "",
-        confirmPassword: "",
     });
     
-    const signUp = async (event) => {
+    const logIn = async (event) => {
         event.preventDefault()
         setError("")
 
-        if( formInfo.email.length === 0) return setError('You must provide an email.')
-
-        if( !validator.isEmail(formInfo.email)) return setError("You must provide a valid email.")
-        
-        if( formInfo.email !== formInfo.confirmEmail ) return setError('Email and Confirm Email must match')
+        if( formInfo.email.length === 0) return setError('You must provide a valid email.')
 
         if( formInfo.password.length === 0) return setError('You must provide a password')
+
+        if( !validator.isEmail(formInfo.email)) return setError("You must provide a valid email.")
+
+        if( formInfo.email !== formInfo.confirmEmail ) return setError('Email and Confirm Email must match')
 
         if( formInfo.password !== formInfo.confirmPassword ) return setError('Passwords must match')
 
         try {
-
-            const user = await signup(formInfo.email, formInfo.password)
-            console.log('user', user);
-
+                const user = await login(formInfo.email, formInfo.password)
+                console.log('user', user);
+            
         } catch (error) {
             console.log('error', error)
         }
     }
 
-    const errorChecker = () => {
-        if (error.length === 0) {
-            return        
-    }
-}
 
     const handleChange = (id, value) => {
         setFormInfo({
@@ -93,7 +99,7 @@ function SignUpForm() {
 
     return (
         <Container>
-            <form onSubmit={signUp}>
+            <Form onSubmit={logIn}>
                 <TextField 
                     className={classes.input} 
                     type='email'
@@ -105,17 +111,7 @@ function SignUpForm() {
                         handleChange(e.target.id, e.target.value)
                     }}
                     />
-                <TextField 
-                    className={classes.input} 
-                    type='email'
-                    id='confirmEmail'
-                    label="Confirm Email"
-                    variant="standard"  
-                    onChange={ (e) => {
-                        setError("")
-                        handleChange(e.target.id, e.target.value)
-                    }}
-                    />
+                <Divider className={classes.root}/>
                 <TextField 
                     className={classes.input} 
                     type='password'
@@ -127,33 +123,22 @@ function SignUpForm() {
                         handleChange(e.target.id, e.target.value)
                     }}
                     />
-                <TextField 
-                    className={classes.input}
-                    style={{ paddingBottom: "30px"  }}
-                    type='password'
-                    id='confirmPassword'
-                    label="Confirm Password"
-                    variant="standard"  
-                    onChange={ (e) => {
-                        setError("")
-                        handleChange(e.target.id, e.target.value)
-                    }}
-                    />
-                <Button 
-                    style={{ width: "100%"  }}
+                <Divider />
+                <Error>
+                    {error}
+                </Error>
+                <Button  
                     variant="outlined" 
                     type='submit'
+                    style={{width: '80%', align: 'center'}}
                 >
                     Submit
                 </Button>
-            </form>
-                {error.length > 0 ?
-                    <Message> {error} </Message> : <Message> {message} </Message> 
-                } 
+            </Form>
         </Container>
     )
 
     }
 
-export default SignUpForm
+export default LogIn
 

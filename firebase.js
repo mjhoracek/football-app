@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 import 'firebase/auth'
 
 const firebaseConfig = {
@@ -10,26 +10,12 @@ const firebaseConfig = {
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 }
 
-// const firebaseConfig = {
-//     apiKey: "AIzaSyAVQQnYy4kYbtvqyB2yE8oP7-cNf7ao6g8",
-//     authDomain: "auth-development-d02f2.firebaseapp.com",
-//     projectId: "auth-development-d02f2",
-//     storageBucket: "auth-development-d02f2.appspot.com",
-//     messagingSenderId: "889983200397",
-//     appId: "1:889983200397:web:3ed2bfe79d010b2b3346c4"
-// }
 
-let instance
-
-export default function getFirebase() {
-    if (typeof window !== "undefined") {
-        if (instance) return instance
-        instance = firebase.initializeApp(firebaseConfig);
-        return instance
+const app = () => {
+    if (!firebase.apps.length) {
+        return firebase.initializeApp(firebaseConfig)
     }
-
-    return null
 }
 
 
-
+export default app
