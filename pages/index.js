@@ -3,6 +3,7 @@ import Head from 'next/head'
 import styled from 'styled-components'
 import SignUpForm from '../components/SignUpForm.js'
 import LogIn from '../components/LogIn.js'
+import { useRouter } from 'next/router'
 
 import { useAuth } from '../contexts/AuthContext'
 
@@ -75,12 +76,13 @@ const Message = styled.p`
 
 export default function Home() {
   const [login, setLogin] = useState(true)
-  const [error, setError] = useState("")
   const [message, setMessage] = useState("Not Signed In")
+  const router = useRouter()
+  const { currentUser, error, setError } = useAuth()
 
-  const { currentUser } = useAuth()
-
-
+  if(currentUser != null){
+    router.push('/dashboard')
+  }
 
   return (
     <Container>

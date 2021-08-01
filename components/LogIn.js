@@ -57,6 +57,16 @@ function LogIn({ error, setError }) {
         }
     }
 
+    async function handleLogout() {
+        setError("")
+    
+        try {
+          await logout()
+        } catch {
+          setError("Failed to log out")
+        }
+      }
+
 
     const handleChange = (id, value) => {
         setFormInfo({
@@ -104,7 +114,7 @@ function LogIn({ error, setError }) {
                     style={{ width: "100%"  }}
                     variant="outlined" 
                     type='submit'
-                    onClick={e => logout}
+                    onClick={e => handleLogout()}
                 >
                     Log Out
                 </Button>

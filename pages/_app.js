@@ -1,6 +1,5 @@
 import { GlobalStyles, CssReset } from '../styles/globals'
 import Head from 'next/head'
-import { CssBaseline } from '@material-ui/core'
 import { AuthProvider } from '../contexts/AuthContext'
 
 function MyApp({ Component, pageProps }) {

@@ -1,7 +1,6 @@
 import Head from 'next/head'
-import SignIn from '../components/SignInForm'
 import styled from 'styled-components'
-
+import LogOut from '../components/LogOut.js'
 
 const Wrapper = styled.div`
     display: flex;
@@ -17,7 +16,8 @@ export default function Home() {
   return (
     <Wrapper>
       <Wrapper>
-            You are signed in
+        Dashboard
+        <LogOut />
       </Wrapper>
     </Wrapper>
   )
