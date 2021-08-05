@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 import { useAuth } from '../contexts/AuthContext'
 
 const Container = styled.div`
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -21,8 +22,8 @@ const Wrapper = styled.div`
     display: flex;
     position: relative;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     max-width: 400px;
     height: 450px;
     background-color: gray;
@@ -31,8 +32,10 @@ const Wrapper = styled.div`
 `
 
 const LeftBox = styled.div`
+    position: absolute;
+    left: 0;
     display: flex;
-    width: 50%;
+    width: 70%;
     height: 100vh;
     background-image: url('/images/football.jpg');
     background-position: center top;
@@ -41,42 +44,45 @@ const LeftBox = styled.div`
 `
 
 const RightBox = styled.div`
+    position: absolute;
+    right: 0;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
     height: 100vh;
-    background-color: #123222 ;
+    background: rgb(34,34,34);
+    background: linear-gradient(90deg, rgba(34,34,34,0.7441351540616247) 0%, rgba(17,17,17,1) 50%, rgba(0,0,0,1) 100%);     
 `
 
 const TextBox = styled.div`
-    position: absolute;
-    top: 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding-top: 30px;
+    padding-bottom: 15px;
 `
 
 const Text = styled.p`
     text-align: center;
     cursor: pointer;
+    font-size: 18px;
 `
 
 const Message = styled.p`
-    position: absolute;
-    bottom: 5%;
     font-weight: 500;
     letter-spacing: 1px;
     height: 30px;
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
+    font-size: 14px;
+    color: lightsteelblue;
 `
 
 export default function Home() {
   const [login, setLogin] = useState(true)
-  const [message, setMessage] = useState("Not Signed In")
+  const [message, setMessage] = useState("Welcome to Mitch's Football App")
   const router = useRouter()
   const { currentUser, error, setError } = useAuth()
 
@@ -122,7 +128,7 @@ export default function Home() {
             }
 
             {error.length > 0 ?
-                    <Message> {error} </Message> : <Message> {currentUser?.email || 'Not Logged In'} </Message> 
+                    <Message> {error} </Message> : <Message> {currentUser?.email || "Welcome to Mitch's Football App"} </Message> 
             } 
 
           </Wrapper>

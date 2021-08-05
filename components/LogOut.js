@@ -11,8 +11,6 @@ const Wrapper = styled.div`
 `
 
 
-
-
 const LogOut = () => {
     const { logout,  setError } = useAuth()
     const router = useRouter()

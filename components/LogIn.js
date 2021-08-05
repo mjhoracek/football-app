@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import validator from 'validator'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/core/styles'
-import { TextField, Button, Divider, Typography, Grid, Paper } from '@material-ui/core'
+import { TextField, Button } from '@material-ui/core'
 
 import { useAuth } from '../contexts/AuthContext'
 
 
-const Container = styled.div`
 
-    padding: 5%;
+const Container = styled.div`
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
     background-color: gray;
     border-radius: 15px;
 `
@@ -19,6 +21,7 @@ const useStyles = makeStyles({
     input: {
         marginTop: '1%',
         marginBottom: '1%',
+        color: 'white'
     },
     root: {
         borderColor: 'red',
@@ -102,22 +105,15 @@ function LogIn({ error, setError }) {
                         handleChange(e.target.id, e.target.value)
                     }}
                     />
-                <Button  
+                <Button
+                    className={classes.input}
                     style={{ width: "100%"  }}
                     variant="outlined" 
                     type='submit'
                 >
-                    Submit
+                    Log In
                 </Button>
             </form>
-            <Button  
-                    style={{ width: "100%"  }}
-                    variant="outlined" 
-                    type='submit'
-                    onClick={e => handleLogout()}
-                >
-                    Log Out
-                </Button>
         </Container>
     )
 

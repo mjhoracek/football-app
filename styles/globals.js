@@ -62,6 +62,6 @@ a:visited, a:link, a:hover, a:focus {
 export const GlobalStyles = createGlobalStyle`
 body {
     width: 100%;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 `

@@ -7,27 +7,24 @@ import { TextField, Button, Divider, Typography, Grid, Paper } from '@material-u
 
 import { useAuth } from '../contexts/AuthContext'
 
+import InputField from './Shared/InputField'
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
     background-color: gray;
-    border: 20px black;
     border-radius: 15px;
 `
 
 
 const useStyles = makeStyles({
-    input: {
+    root: {
         marginTop: '1%',
         marginBottom: '1%',
-    },
-    root: {
+        cursor: 'pointer',
         borderColor: 'red',
-        color: 'black'
+        color: 'white'
     }
 })
 
@@ -81,18 +78,19 @@ function SignUpForm({ error, setError, setMessage }) {
         <Container>
             <form onSubmit={signUp}>
                 <TextField 
-                    className={classes.input} 
+                    className={classes.root} 
                     type='email'
                     id='email'
                     label="Email"
-                    variant="standard"  
+                    variant="standard"
+                    color='primary' 
                     onChange={ (e) => {
                         setError("")
                         handleChange(e.target.id, e.target.value)
                     }}
                     />
                 <TextField 
-                    className={classes.input} 
+                    className={classes.root} 
                     type='email'
                     id='confirmEmail'
                     label="Confirm Email"
@@ -103,7 +101,7 @@ function SignUpForm({ error, setError, setMessage }) {
                     }}
                     />
                 <TextField 
-                    className={classes.input} 
+                    className={classes.root} 
                     type='password'
                     id='password'
                     label="Password"
@@ -114,7 +112,7 @@ function SignUpForm({ error, setError, setMessage }) {
                     }}
                     />
                 <TextField 
-                    className={classes.input}
+                    className={classes.root}
                     style={{ paddingBottom: "30px"  }}
                     type='password'
                     id='confirmPassword'
@@ -126,12 +124,19 @@ function SignUpForm({ error, setError, setMessage }) {
                     }}
                     />
                 <Button 
+                    color='secondary'
                     style={{ width: "100%"  }}
                     variant="outlined" 
                     type='submit'
                 >
-                    Submit
+                    Sign Up
                 </Button>
+                <InputField
+                                    type='password'
+                                    id='confirmPassword'
+                                    label="Confirm Password"
+                                    variant="standard"  
+                >Hello</InputField>
             </form>
         </Container>
     )
