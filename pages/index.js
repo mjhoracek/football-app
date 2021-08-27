@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import SignUpForm from '../components/SignUpForm.js'
 import LogIn from '../components/LogIn.js'
 import { useRouter } from 'next/router'
+import { colors } from '../styles/colors.js'
 
 import { useAuth } from '../contexts/AuthContext'
 
@@ -26,7 +27,7 @@ const Wrapper = styled.div`
     align-items: flex-start;
     max-width: 400px;
     height: 450px;
-    background-color: gray;
+    background-color: ${colors.darkblue};
     margin: auto;
     border-radius: 15px;
 `
@@ -76,8 +77,9 @@ const Message = styled.p`
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-bottom: 10px;
     font-size: 14px;
-    color: lightsteelblue;
+    color: ${colors.purple};
 `
 
 export default function Home() {
@@ -103,7 +105,7 @@ export default function Home() {
           <Wrapper>
             <TextBox>
               <Text 
-                style={{ color: login ? 'black' : 'white', textDecoration: login ? 'none' : 'underline' }}
+                style={{ color: login ? colors.gray : colors.purple , textDecoration: login ? 'none' : 'underline' }}
                 onClick={e => {
                   setLogin(false);
                   setError('');
@@ -112,7 +114,7 @@ export default function Home() {
                 Sign Up
               </Text>
               <Text
-                style={{ color: login ? 'white' : 'black', textDecoration: login ? 'underline' : 'none' }}
+                style={{ color: login ? colors.purple : colors.gray, textDecoration: login ? 'underline' : 'none' }}
                 onClick={e => {
                   setLogin(true);
                   setError('');

@@ -2,35 +2,21 @@ import React, { useState } from 'react'
 import validator from 'validator'
 import styled from 'styled-components'
 
-import { makeStyles } from '@material-ui/core/styles'
-import { TextField, Button, Divider, Typography, Grid, Paper } from '@material-ui/core'
-
 import { useAuth } from '../contexts/AuthContext'
-
 import InputField from './Shared/InputField'
+import MyButton from './Shared/MyButton'
+import { createNewPlayerObject } from '../hooks/api/createNewPlayerObject'
+
+
 
 const Container = styled.div`
     padding-left: 5%;
     padding-right: 5%;
     padding-bottom: 5%;
-    background-color: gray;
     border-radius: 15px;
 `
 
-
-const useStyles = makeStyles({
-    root: {
-        marginTop: '1%',
-        marginBottom: '1%',
-        cursor: 'pointer',
-        borderColor: 'red',
-        color: 'white'
-    }
-})
-
-
 function SignUpForm({ error, setError, setMessage }) {
-    const classes = useStyles()
     const { signup, currentUser } = useAuth()
 
     const [formInfo, setFormInfo] = useState({
@@ -57,7 +43,8 @@ function SignUpForm({ error, setError, setMessage }) {
         try {
 
             const user = await signup(formInfo.email, formInfo.password)
-            console.log('user', user);
+            const res = await createNewPlayerObject()
+            console.log('The new user email is:', user);
             setMessage(currentUser.email)
 
         } catch (error) {
@@ -77,8 +64,7 @@ function SignUpForm({ error, setError, setMessage }) {
     return (
         <Container>
             <form onSubmit={signUp}>
-                <TextField 
-                    className={classes.root} 
+                <InputField  
                     type='email'
                     id='email'
                     label="Email"
@@ -89,8 +75,7 @@ function SignUpForm({ error, setError, setMessage }) {
                         handleChange(e.target.id, e.target.value)
                     }}
                     />
-                <TextField 
-                    className={classes.root} 
+                <InputField 
                     type='email'
                     id='confirmEmail'
                     label="Confirm Email"
@@ -100,8 +85,7 @@ function SignUpForm({ error, setError, setMessage }) {
                         handleChange(e.target.id, e.target.value)
                     }}
                     />
-                <TextField 
-                    className={classes.root} 
+                <InputField 
                     type='password'
                     id='password'
                     label="Password"
@@ -111,8 +95,7 @@ function SignUpForm({ error, setError, setMessage }) {
                         handleChange(e.target.id, e.target.value)
                     }}
                     />
-                <TextField 
-                    className={classes.root}
+                <InputField 
                     style={{ paddingBottom: "30px"  }}
                     type='password'
                     id='confirmPassword'
@@ -123,20 +106,13 @@ function SignUpForm({ error, setError, setMessage }) {
                         handleChange(e.target.id, e.target.value)
                     }}
                     />
-                <Button 
-                    color='secondary'
+                <MyButton 
                     style={{ width: "100%"  }}
                     variant="outlined" 
                     type='submit'
                 >
                     Sign Up
-                </Button>
-                <InputField
-                                    type='password'
-                                    id='confirmPassword'
-                                    label="Confirm Password"
-                                    variant="standard"  
-                >Hello</InputField>
+                </MyButton>
             </form>
         </Container>
     )

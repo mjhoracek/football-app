@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import { TextField, Button } from '@material-ui/core'
 
 import { useAuth } from '../contexts/AuthContext'
+import MyButton from './Shared/MyButton'
+import InputField from './Shared/InputField'
 
 
 
@@ -12,7 +14,6 @@ const Container = styled.div`
     padding-left: 5%;
     padding-right: 5%;
     padding-bottom: 5%;
-    background-color: gray;
     border-radius: 15px;
 `
 
@@ -82,7 +83,7 @@ function LogIn({ error, setError }) {
     return (
         <Container>
             <form onSubmit={logIn}>
-                <TextField 
+                <InputField 
                     className={classes.input} 
                     type='email'
                     id='email'
@@ -93,7 +94,7 @@ function LogIn({ error, setError }) {
                         handleChange(e.target.id, e.target.value)
                     }}
                     />
-                <TextField 
+                <InputField 
                     className={classes.input}
                     style={{ paddingBottom: "30px"  }}
                     type='password'
@@ -105,14 +106,14 @@ function LogIn({ error, setError }) {
                         handleChange(e.target.id, e.target.value)
                     }}
                     />
-                <Button
+                <MyButton
                     className={classes.input}
                     style={{ width: "100%"  }}
                     variant="outlined" 
                     type='submit'
                 >
                     Log In
-                </Button>
+                </MyButton>
             </form>
         </Container>
     )

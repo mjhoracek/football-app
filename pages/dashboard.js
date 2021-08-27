@@ -1,7 +1,16 @@
-import Head from 'next/head'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import LogOut from '../components/LogOut.js'
 import { useAuth } from '../contexts/AuthContext'
+import { useRouter } from 'next/router'
+//Redux
+import { useSelector, useDispatch } from 'react-redux'
+import { setUser } from '../redux/userSlice'
+// Api functions
+import { getPlayerObject } from '../hooks/api/getPlayerObject'
+// Components
+import LogOut from '../components/LogOut.js'
+import GameRow from '../components/GameRow'
+
 
 const Container = styled.div`
     display: flex;
@@ -26,11 +35,13 @@ const LeftColumn = styled.div`
 const CenterColumn = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     width: 70%;
     height: 100%;
     background-color: lightgray;
+    margin-top: 5%;
+    overflow: scroll;
 `
 
 const RightColumn = styled.div`
@@ -61,16 +72,64 @@ const UserBox = styled.div`
 
 export default function Home() {
   const { currentUser } = useAuth()
+  const {user} = useSelector((state) => state.user)
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const [playerObject, setPlayerObject] = useState(null)
+  
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      const object = await getPlayerObject()
+      setPlayerObject(object?.data[0])
+      dispatch(setUser(object?.data[0]))
+    }
+    if(currentUser){
+      fetchData()
+    }
+  }, [currentUser])
+  
+    const page = 1
+    const games = playerObject?.picks.week1
 
-
+  
   return (
     <Container>
       <LeftColumn />
-      <CenterColumn />
+      <CenterColumn>
+      {playerObject && games.map((game, index) => (
+            <GameRow
+              key={index} 
+              index={index} 
+              game={game}
+            />
+            ))
+      }  
+
+
+      </CenterColumn>
       <RightColumn>
         <UserBox>{currentUser?.email || 'Not Logged In'}</UserBox>
+        <UserBox>
+          {playerObject && <p style={{textAlign: 'center'}}>Player Object Loaded</p>}
+        </UserBox>
         <LogOut />
       </RightColumn>
     </Container>
   )
 }
+
+
+// {games.map((game, index) => (
+//   <Game
+//     key={index} 
+//     index={index} 
+//     game={game}
+//     games={games} 
+//     setGames={setGames}
+//     handleFavorite={handleFavorite}
+//     handleOdds={handleOdds}
+//     oddsType={oddsType}
+//     setOddsType={setOddsType}
+//   />
+// ))}
