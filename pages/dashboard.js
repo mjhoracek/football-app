@@ -91,7 +91,6 @@ export default function Home() {
     }
   }, [currentUser])
   
-    const page = 1
     const games = playerObject?.picks.week1
 
   

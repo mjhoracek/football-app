@@ -30,7 +30,7 @@ time, mark, audio, video {
 
 //Background Texture
 body {
-  background-color: #313130;
+  background-color: #22252C;
 }
 
 
@@ -62,6 +62,5 @@ a:visited, a:link, a:hover, a:focus {
 export const GlobalStyles = createGlobalStyle`
 body {
     width: 100%;
-    overflow-y: hidden;
 }
 `

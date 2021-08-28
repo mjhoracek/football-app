@@ -6,7 +6,6 @@ import { useAuth } from '../contexts/AuthContext'
 
 const Wrapper = styled.div`
     display: flex;
-    padding-top: 20px;
     width: 50%;
 `
 
