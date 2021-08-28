@@ -10,6 +10,7 @@ import { getPlayerObject } from '../hooks/api/getPlayerObject'
 // Components
 import LogOut from '../components/LogOut.js'
 import GameRow from '../components/GameRow'
+import { random } from '../hooks/api/api'
 
 
 const Container = styled.div`
@@ -112,6 +113,9 @@ export default function Home() {
         <UserBox>{currentUser?.email || 'Not Logged In'}</UserBox>
         <UserBox>
           {playerObject && <p style={{textAlign: 'center'}}>Player Object Loaded</p>}
+        </UserBox>
+        <UserBox>
+          <button onClick={() => sessionStorage.setItem('token', 'heres a token')}>Random</button>
         </UserBox>
         <LogOut />
       </RightColumn>

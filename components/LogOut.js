@@ -21,6 +21,8 @@ async function handleLogout() {
 
     try {
         await logout()
+        localStorage.clear()
+        sessionStorage.clear()
         router.push('/')
     } catch {
         setError("Failed to log out")

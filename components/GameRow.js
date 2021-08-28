@@ -27,8 +27,6 @@ const GameBox = styled.div`
 
 const GameRow = ({index, game }) => {
     const {user} = useSelector((state) => state.user)
-    
-    console.log('game', game)
 
     return (
         <Wrapper>
