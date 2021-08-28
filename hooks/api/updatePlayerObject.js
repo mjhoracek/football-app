@@ -1,12 +1,14 @@
 import { createToken } from "./createToken";
 import axios from 'axios'
 
-export const updatePlayerWinners = async (winners) => {
+export const updatePlayerObject = async ( winners ) => {
     const playerURL = 'http://localhost:5000/players';
     const header = await createToken();
+    const body = winners
 
     try {
-      const res = await axios.patch(playerURL, header)
+      const res = await axios.patch(playerURL, body, header )
+      console.log(res)
       return res.data;
     } catch (e) {
       console.error(e);

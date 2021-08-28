@@ -10,7 +10,8 @@ import { getPlayerObject } from '../hooks/api/getPlayerObject'
 // Components
 import LogOut from '../components/LogOut.js'
 import GameRow from '../components/GameRow'
-import { random } from '../hooks/api/api'
+import InputField from '../components/Shared/InputField'
+import { updatePlayerObject, updatePlayerWinners } from '../hooks/api/updatePlayerObject'
 
 
 const Container = styled.div`
@@ -106,34 +107,17 @@ export default function Home() {
             />
             ))
       }  
-
-
       </CenterColumn>
       <RightColumn>
-        <UserBox>{currentUser?.email || 'Not Logged In'}</UserBox>
+        <UserBox>{playerObject?.playerName || 'Not Logged In'}</UserBox>
         <UserBox>
           {playerObject && <p style={{textAlign: 'center'}}>Player Object Loaded</p>}
         </UserBox>
         <UserBox>
-          <button onClick={() => sessionStorage.setItem('token', 'heres a token')}>Random</button>
+          <button onClick={() => updatePlayerObject({email: 'jonnnnnnnyBoncennnnnnn', playerName: 'Bill', team : 'THE ATLANTA BRAVES'})}>Random</button>
         </UserBox>
         <LogOut />
       </RightColumn>
     </Container>
   )
 }
-
-
-// {games.map((game, index) => (
-//   <Game
-//     key={index} 
-//     index={index} 
-//     game={game}
-//     games={games} 
-//     setGames={setGames}
-//     handleFavorite={handleFavorite}
-//     handleOdds={handleOdds}
-//     oddsType={oddsType}
-//     setOddsType={setOddsType}
-//   />
-// ))}
