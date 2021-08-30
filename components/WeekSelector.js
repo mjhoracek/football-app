@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { colors } from '../styles/colors'
 
@@ -42,25 +42,29 @@ const Week = styled.div`
     color: white;
     size: 24px;
     border-radius: 30px;
-    background-color: ${colors.gray};
+    background-color: ${props => props.active ? colors.purple : colors.gray};
     filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.55));
 `
 
-const WeekSelector = () => {
+
+
+const WeekSelector = ({week, setWeek}) => {
+
+
     return (
         <Container>
             <Header>Enter Weekly Picks</Header>
             <WeeksBox>
-                <Week>1</Week>
-                <Week>2</Week>
-                <Week>3</Week>
-                <Week>4</Week>
-                <Week>5</Week>
-                <Week>6</Week>
-                <Week>7</Week>
-                <Week>8</Week>
+                <Week active={week === 1} onClick={() => setWeek(1)}>1</Week>
+                <Week active={week === 2} onClick={() => setWeek(2)}>2</Week>
+                <Week active={week === 3} onClick={() => setWeek(3)}>3</Week>
+                <Week active={week === 4} onClick={() => setWeek(4)}>4</Week>
+                <Week active={week === 5} onClick={() => setWeek(5)}>5</Week>
+                <Week active={week === 6} onClick={() => setWeek(6)}>6</Week>
+                <Week active={week === 7} onClick={() => setWeek(7)}>7</Week>
+                <Week active={week === 8} onClick={() => setWeek(8)}>8</Week>
             </WeeksBox>
-            <Header>Week 1 Picks</Header>
+            <Header>Week {week} Picks</Header>
         </Container>
     )
 }

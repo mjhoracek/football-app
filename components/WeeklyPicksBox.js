@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import GameRow from './GameRow'
 import WeekSelector from './WeekSelector'
@@ -22,11 +22,12 @@ const GamesWrapper = styled.div`
 
 
 const WeeklyPicksBox = ({ games }) => {
-
+    const [week, setWeek] = useState(2)
+    
 
     return (
         <Container>
-            <WeekSelector />
+            <WeekSelector week={week} setWeek={setWeek} />
             <GamesWrapper>
             {
                 games.map((game, index) => (
