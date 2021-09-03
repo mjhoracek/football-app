@@ -8,7 +8,7 @@ import { setUser } from '../redux/userSlice'
 // Api functions
 import { getPlayerObject } from '../hooks/api/getPlayerObject'
 // Components
-import LogOut from '../components/LogOut.js'
+import LogOut from '../components/Layouts/Dashboard/LogOut'
 import GameRow from '../components/GameRow'
 import InputField from '../components/Shared/InputField'
 import { updatePlayerObject, updatePlayerWinners } from '../hooks/api/updatePlayerObject'

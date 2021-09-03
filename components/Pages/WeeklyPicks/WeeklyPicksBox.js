@@ -21,15 +21,14 @@ const GamesWrapper = styled.div`
 `
 
 
-const WeeklyPicksBox = ({ games }) => {
-    const [week, setWeek] = useState(2)
+const WeeklyPicksBox = ({ games, week, setWeek }) => {
     
 
     return (
         <Container>
             <WeekSelector week={week} setWeek={setWeek} />
             <GamesWrapper>
-            {
+            { games &&
                 games.map((game, index) => (
                     <GameRow
                     key={index} 
@@ -38,7 +37,6 @@ const WeeklyPicksBox = ({ games }) => {
                     />
                 ))
             }  
-
             </GamesWrapper>
 
         </Container>

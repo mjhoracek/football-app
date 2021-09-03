@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button } from '@material-ui/core'
 import { useRouter } from 'next/router'
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../../contexts/AuthContext'
 
 const Wrapper = styled.div`
     display: flex;

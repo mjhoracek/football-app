@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { colors } from '../styles/colors'
+import { colors } from '../../../styles/colors'
 import { useSelector, useDispatch } from 'react-redux'
-import {setUser} from '../redux/userSlice'
+import {setUser} from '../../../redux/userSlice'
 
 const Wrapper = styled.div`
     display: flex;
@@ -71,7 +71,32 @@ const GameRow = ({index, game }) => {
                     <VersusBox>vs</VersusBox>
                     <TeamNameBox>{game.hometeam}</TeamNameBox>
                     <PointsBox>
-                        <Points>-</Points>
+                        <Points>
+                        <select
+                             name="pointsSelector"
+                    
+
+                        >
+                            <option value="">-</option>
+                            <option value={0}>0</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5</option>
+                            <option value={6}>6</option>
+                            <option value={7}>7</option>
+                            <option value={8}>8</option>
+                            <option value={8}>8</option>
+                            <option value={9}>9</option>
+                            <option value={10}>10</option>
+                            <option value={12}>10</option>
+                            <option value={13}>10</option>
+                            <option value={14}>10</option>
+                            <option value={15}>10</option>
+                            <option value={16}>10</option>
+                        </select>
+
+                        </Points>
                     </PointsBox>
                 </>
             }

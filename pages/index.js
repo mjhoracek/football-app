@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
-import SignUpForm from '../components/SignUpForm.js'
-import LogIn from '../components/LogIn.js'
+import SignUpForm from '../components/Pages/SignIn/SignUpForm'
+import LogIn from '../components/Pages/SignIn/LogIn'
 import { useRouter } from 'next/router'
 import { colors } from '../styles/colors.js'
 

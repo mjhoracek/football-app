@@ -2,15 +2,15 @@ import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useAuth } from '../contexts/AuthContext'
 import { useRouter } from 'next/router'
+
 //Redux
 import { useSelector, useDispatch } from 'react-redux'
 import { setUser } from '../redux/userSlice'
 // Api functions
 import { getPlayerObject } from '../hooks/api/getPlayerObject'
 // Components
-import WeeklyPicksBox from '../components/WeeklyPicksBox'
-import UserModule from '../components/UserModule'
-import Navbar from '../components/Navbar'
+import Dashboard from '../components/Layouts/Dashboard'
+import WeeklyPicksBox from '../components/Pages/WeeklyPicks/WeeklyPicksBox'
 
 const Container = styled.div`
     display: flex;
@@ -54,7 +54,8 @@ const WeeklyPicks = () => {
     const dispatch = useDispatch()
     const router = useRouter()
     const [playerObject, setPlayerObject] = useState(null)
-    
+    const [week, setWeek] = useState(1)
+
     
     useEffect(() => {
       const fetchData = async () => {
@@ -67,22 +68,36 @@ const WeeklyPicks = () => {
       }
     }, [currentUser])
 
-    const games = playerObject?.picks.week1
+
+    const games = playerObject?.picks[`${week - 1}`]
+    
+    const gamesQuantity = games?.length
 
 
+    // console.log(playerObject?.picks[0][1].awayteam) /// week 1, game 2
+    
+    console.log(playerObject)
+    
+    const changer = () => {
+        let existingPlayerObj = JSON.parse(JSON.stringify(playerObject))
+        
+        existingPlayerObj.picks[0][0].chosenWinner = 'AAAAAAAAAAAAAAAAAAAAAAA'
+        
+        setPlayerObject(existingPlayerObj)
+        console.log('updated player obj', playerObject)
+    }
+    
+    
+    
+    
     return (
-        <Container>
-           <LeftCol>
-                <Navbar />
-           </LeftCol>
-           <CenterCol>
-               {playerObject ? <WeeklyPicksBox games={games}/> : <h1>Loading...</h1>}
-           </CenterCol>
-           <RightCol>
-                <UserModule />
-           </RightCol>
-        </Container>
+        <Dashboard>
+            {playerObject ? <WeeklyPicksBox week={week} setWeek={setWeek} games={games}/> : <h1 style={{color: 'white'}}>Loading...</h1>}
+        </Dashboard>
     )
 }
 
 export default WeeklyPicks
+
+
+

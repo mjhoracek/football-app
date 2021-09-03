@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import validator from 'validator'
 import styled from 'styled-components'
 
-import { useAuth } from '../contexts/AuthContext'
-import InputField from './Shared/InputField'
-import MyButton from './Shared/MyButton'
-import { createNewPlayerObject } from '../hooks/api/createNewPlayerObject'
+import { useAuth } from '../../../contexts/AuthContext'
+import InputField from '../../Shared/InputField'
+import MyButton from '../../../components/Shared/MyButton'
+import { createNewPlayerObject } from '../../../hooks/api/createNewPlayerObject'
 
 
 
