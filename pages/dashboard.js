@@ -9,7 +9,7 @@ import { setUser } from '../redux/userSlice'
 import { getPlayerObject } from '../hooks/api/getPlayerObject'
 // Components
 import LogOut from '../components/Layouts/Dashboard/LogOut'
-import GameRow from '../components/GameRow'
+import GameRow from '../components/Pages/WeeklyPicks/GameRow'
 import InputField from '../components/Shared/InputField'
 import { updatePlayerObject, updatePlayerWinners } from '../hooks/api/updatePlayerObject'
 
@@ -98,14 +98,7 @@ export default function Home() {
     <Container>
       <LeftColumn />
       <CenterColumn>
-      {playerObject && games.map((game, index) => (
-            <GameRow
-              key={index} 
-              index={index} 
-              game={game}
-            />
-            ))
-      }  
+
       </CenterColumn>
       <RightColumn>
         <UserBox>{playerObject?.playerName || 'Not Logged In'}</UserBox>

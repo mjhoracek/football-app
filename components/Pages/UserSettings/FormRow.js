@@ -4,7 +4,7 @@ import InputField from '../../Shared/InputField'
 
 
 
-const FormRow = ({label, placeholder, type}) => {
+const FormRow = ({label, placeholder, type, name}) => {
     return (
         <Styled.FormRow>
             <Styled.LabelContainer>
@@ -12,6 +12,7 @@ const FormRow = ({label, placeholder, type}) => {
             </Styled.LabelContainer>
             <Styled.InputContainer>
                 <InputField 
+                    name={name}
                     type={type}
                     placeholder={placeholder}
                     variant="standard"

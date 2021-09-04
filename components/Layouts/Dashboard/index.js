@@ -3,7 +3,7 @@ import { colors } from '../../../styles/colors'
 import * as Styled from './style'
 
 import UserModule from '../Dashboard/UserModule'
-import Navbar from '../Dashboard/Navbar'
+import Navbar from '../Dashboard/Navbar/index'
 
 
 

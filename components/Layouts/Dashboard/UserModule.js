@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { useAuth } from '../../../contexts/AuthContext'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { useSelector, useDispatch } from 'react-redux'
+import { setView } from '../../../redux/viewSlice'
 
 
 const Container = styled.div`
@@ -46,6 +48,11 @@ const LinkText = styled.h1`
     font-size: 14px;
     text-align: center;
     cursor: pointer;
+
+    &:hover{
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+    }
 `
 
 const UserModule = () => {
@@ -63,14 +70,14 @@ const UserModule = () => {
         } catch {
             setError("Failed to log out")
         }
-        }
+    }
 
     return (
         <Container>
             <Username>Welcome, {currentUser ? currentUser.email : 'No User'}</Username>
             <LinksBox>
                 <Link href="/settings">
-                    <LinkText onclick>User</LinkText>
+                    <LinkText>Settings</LinkText>
                 </Link>
                     <LinkText onClick={e => handleLogout()}>Log Out</LinkText>
             </LinksBox>
