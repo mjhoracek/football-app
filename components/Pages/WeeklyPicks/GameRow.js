@@ -23,10 +23,11 @@ const TeamNameBox = styled.div`
     width: 40%;
     height: 50px;
     margin: 2%;
-    background-color: ${colors.gray};
+    background-color: ${props => props.active ? colors.purple : colors.gray};
     text-align: center;
     border-radius: 10px;
     filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.55));
+    cursor: pointer;
 `
 const VersusBox = styled.div`
     display: flex;
@@ -60,25 +61,47 @@ const Points = styled.div`
     background-color: ${colors.gray};
 `
 
-const GameRow = ({index, game }) => {
+const GameRow = ({index, game, week, handleTeamSelection, handlePointsSelection }) => {
     const {user} = useSelector((state) => state.user)
+    const [pickRadio, setPickRadio] = useState('')
 
     return (
         <Wrapper>
             {user &&
                 <>
-                    <TeamNameBox>{game.awayteam}</TeamNameBox>
+                    <TeamNameBox
+                        active={pickRadio === 'away'} 
+                        onClick={(e) => {
+                            handleTeamSelection(game.awayteam, week, index)
+                            setPickRadio('away')
+                            }
+                        }
+                    >
+                        {game.awayteam}
+                    </TeamNameBox>
+
                     <VersusBox>vs</VersusBox>
-                    <TeamNameBox>{game.hometeam}</TeamNameBox>
+                    <TeamNameBox 
+                        active={pickRadio === 'home'} 
+                        onClick={(e) => {
+                            handleTeamSelection(game.hometeam, week, index)
+                            setPickRadio('home')
+                            }
+                        }
+                    >
+                        {game.hometeam}
+                    </TeamNameBox>
+
                     <PointsBox>
                         <Points>
                         <select
                              name="pointsSelector"
-                    
-
+                             onChange={e => {
+                                    handlePointsSelection(e.target.value, week, index)
+                                }}
                         >
                             <option value="">-</option>
-                            <option value={0}>0</option>
+                            <option value={1}>1</option>
                             <option value={2}>2</option>
                             <option value={3}>3</option>
                             <option value={4}>4</option>
@@ -86,14 +109,14 @@ const GameRow = ({index, game }) => {
                             <option value={6}>6</option>
                             <option value={7}>7</option>
                             <option value={8}>8</option>
-                            <option value={8}>8</option>
                             <option value={9}>9</option>
                             <option value={10}>10</option>
-                            <option value={12}>10</option>
-                            <option value={13}>10</option>
-                            <option value={14}>10</option>
-                            <option value={15}>10</option>
-                            <option value={16}>10</option>
+                            <option value={11}>11</option>
+                            <option value={12}>12</option>
+                            <option value={13}>13</option>
+                            <option value={14}>14</option>
+                            <option value={15}>15</option>
+                            <option value={16}>16</option>
                         </select>
 
                         </Points>

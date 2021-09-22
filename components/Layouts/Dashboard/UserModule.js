@@ -45,7 +45,7 @@ const LinksBox = styled.div`
 
 const LinkText = styled.h1`
     color: white;
-    font-size: 14px;
+    font-size: px;
     text-align: center;
     cursor: pointer;
 
@@ -77,7 +77,7 @@ const UserModule = () => {
             <Username>Welcome, {currentUser ? currentUser.email : 'No User'}</Username>
             <LinksBox>
                 <Link href="/settings">
-                    <LinkText>Settings</LinkText>
+                    <LinkText>Edit Account</LinkText>
                 </Link>
                     <LinkText onClick={e => handleLogout()}>Log Out</LinkText>
             </LinksBox>

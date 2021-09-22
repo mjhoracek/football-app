@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import validator from 'validator'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/core/styles'
-import { TextField, Button } from '@material-ui/core'
-
 import { useAuth } from '../../../contexts/AuthContext'
-import MyButton from '../../../components/Shared/MyButton'
 import InputField from '../../Shared/InputField'
+import NewButton from '../../Shared/NewButton'
 
 
 
@@ -61,17 +59,6 @@ function LogIn({ error, setError }) {
         }
     }
 
-    async function handleLogout() {
-        setError("")
-    
-        try {
-          await logout()
-        } catch {
-          setError("Failed to log out")
-        }
-      }
-
-
     const handleChange = (id, value) => {
         setFormInfo({
             ...formInfo,
@@ -106,14 +93,12 @@ function LogIn({ error, setError }) {
                         handleChange(e.target.id, e.target.value)
                     }}
                     />
-                <MyButton
-                    className={classes.input}
+                <NewButton
+                    text='Log In'
                     style={{ width: "100%"  }}
                     variant="outlined" 
                     type='submit'
-                >
-                    Log In
-                </MyButton>
+                />
             </form>
         </Container>
     )

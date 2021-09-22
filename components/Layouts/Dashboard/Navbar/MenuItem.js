@@ -1,13 +1,11 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
+import Link from 'next/link'
+
 import SVG from '../../../SVG'
 import { colors } from '../../../../styles/colors'
 import SubmenuAccordian from './SubmenuAccordian'
 
-export const Wrapper = styled.div`
-    display: flex;
-    padding-bottom: 3%;
-`
 
 export const MenuItemContainer = styled.div`
     display: flex;
@@ -39,8 +37,6 @@ export const ArrowButton = styled.div`
     width: 50%;
     height: 50px;
     cursor: pointer;
-
-
 `
 
 
@@ -48,6 +44,7 @@ export const ArrowButton = styled.div`
 const MenuItem = ({
         children, 
         defaultOpen,
+        iconlink,
  
         link1, 
         label1,
@@ -87,9 +84,9 @@ const MenuItem = ({
     return (
         <div>
         <MenuItemContainer onClick={() => setOpen(!open)}>
-            <IconContainer>
-                {children}
-            </IconContainer>
+                <IconContainer>
+                    {children}
+                </IconContainer>
             <ArrowButton open={open} onClick={() => setOpen(!open)}>
                 <SVG.Arrow open={open} style={{ width: '15px' }} fill={open ? colors.white : colors.purple} />
             </ArrowButton>

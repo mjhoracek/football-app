@@ -12,87 +12,89 @@ import { getPlayerObject } from '../hooks/api/getPlayerObject'
 import Dashboard from '../components/Layouts/Dashboard'
 import WeeklyPicksBox from '../components/Pages/WeeklyPicks/WeeklyPicksBox'
 
-const Container = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 100%;
 
-`
-
-const LeftCol = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 20%;
-    height: 700px;
-`
-
-const CenterCol = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 60%;
-    
-`
-
-const RightCol = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 20%;
-    height: 700px;
-`
 
 const WeeklyPicks = () => {
     const { currentUser } = useAuth()
-    const {user} = useSelector((state) => state.user)
     const dispatch = useDispatch()
     const router = useRouter()
     const [playerObject, setPlayerObject] = useState(null)
     const [week, setWeek] = useState(1)
-
+    
     
     useEffect(() => {
       const fetchData = async () => {
         const object = await getPlayerObject()
         setPlayerObject(object?.data[0])
         dispatch(setUser(object?.data[0]))
-      }
-      if(currentUser){
+    }
+    if(currentUser){
         fetchData()
-      }
-    }, [currentUser])
+    }
+    getStreams()
+}, [currentUser])
 
 
     const games = playerObject?.picks[`${week - 1}`]
-    
-    const gamesQuantity = games?.length
 
-
-    // console.log(playerObject?.picks[0][1].awayteam) /// week 1, game 2
-    
-    console.log(playerObject)
-    
-    const changer = () => {
+        
+    const handleTeamSelection = (favorite, week, index) => {
         let existingPlayerObj = JSON.parse(JSON.stringify(playerObject))
-        
-        existingPlayerObj.picks[0][0].chosenWinner = 'AAAAAAAAAAAAAAAAAAAAAAA'
-        
+
+        existingPlayerObj.picks[week-1][index].chosenWinner = favorite
+
         setPlayerObject(existingPlayerObj)
-        console.log('updated player obj', playerObject)
+        console.log('playerObject Changed Successfully', playerObject)
     }
     
-    
-    
+
+    const handlePointsSelection = (points, week, index) => {
+        let existingPlayerObj = JSON.parse(JSON.stringify(playerObject))
+
+        existingPlayerObj.picks[week-1][index].points = points
+
+
+        ///Check for duplicates - hasDuplicates returns TRUE if index of duplicates exists
+                let pointValues = []
+                existingPlayerObj.picks[week-1].map(game => pointValues.push(game.points))
+
+                function hasDuplicates(arr) {
+                    return arr.some(x => arr.indexOf(x) !== arr.lastIndexOf(x));
+                }
+                
+                if (hasDuplicates(pointValues)) {
+                    console.log("Duplicate elements found.");
+                }
+                else {
+                    console.log("No Duplicates found.");
+                }
+        
+        setPlayerObject(existingPlayerObj)
+        console.log('playerObject Changed Successfully', playerObject)
+    }
+
     
     return (
-        <Dashboard>
-            {playerObject ? <WeeklyPicksBox week={week} setWeek={setWeek} games={games}/> : <h1 style={{color: 'white'}}>Loading...</h1>}
+        <Dashboard 
+            header='Enter Weekly Picks' 
+            savepicks={true}
+            playerObject={playerObject}
+        >
+                {playerObject ? 
+                
+                <WeeklyPicksBox 
+                    week={week} 
+                    setWeek={setWeek} 
+                    games={games} 
+                    setPlayerObject={setPlayerObject}
+                    handleTeamSelection={handleTeamSelection}
+                    playerObject={playerObject}
+                    handlePointsSelection={handlePointsSelection}
+                />
+
+                : 
+
+                <h1 style={{color: 'white'}}>Loading...</h1>}
         </Dashboard>
     )
 }

@@ -9,7 +9,6 @@ const Container = styled.div`
     align-items: center;
     width: 95%;
     height: 125px;
-    margin-top: 10px;
 `
 const Header = styled.div`
     display: flex;
@@ -53,7 +52,6 @@ const WeekSelector = ({week, setWeek}) => {
 
     return (
         <Container>
-            <Header>Enter Weekly Picks</Header>
             <WeeksBox>
                 <Week active={week === 1} onClick={() => setWeek(1)}>1</Week>
                 <Week active={week === 2} onClick={() => setWeek(2)}>2</Week>

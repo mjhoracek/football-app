@@ -1,36 +1,59 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as Styled from './style'
 import FormRow from './Formrow'
-import MyButton from '../../Shared/MyButton'
-import Button from '../../Shared/Button'
 import { colors } from '../../../styles/colors'
+import NewButton from '../../Shared/NewButton'
+import { updatePlayerObject } from '../../../hooks/api/updatePlayerObject'
+
+const UserSettings = ({ playerObject, setPlayerObject }) => {
+    const [changemade, setChangeMade] = useState(false)
+    console.log('player obj', playerObject)
 
 
-const UserSettings = () => {
-    const [formInfo, setFormInfo] = useState({
-        email: '',
-        name: '',
-    });
+    const handleChange = (update, field) => {
+        setChangeMade(true)
+        let existingPlayerObj = JSON.parse(JSON.stringify(playerObject))
 
+        existingPlayerObj[field] = update
 
-    const handleChange = (name, value) => {
-        setFormInfo({
-            ...formInfo,
-            [name]: value
-        })
+        setPlayerObject(existingPlayerObj)
+        console.log('playerObject Changed Successfully', playerObject)
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if(changemade === false){
+            return
+        }
+        updatePlayerObject(playerObject)
+        console.log('update submitted')
+    }
+    
 
     return (
         <Styled.Container>
-            <Styled.Header>Edit Account</Styled.Header>
             <Styled.FormContainer>
-                <FormRow label='Email:' name='email' placeholder='Email Placeholder' type='email'/>
-                <FormRow label='Name:' name='name' placeholder='Enter Name' type='text'/>
-                <Button
-                    bgColor={colors.purple}
-                    text='Save' 
-                    color='white'
+                <form onSubmit={handleSubmit}>
+                <FormRow 
+                    label='Email:'
+                    name='email'  
+                    placeholder={playerObject?.email} 
+                    onChange={(e) => handleChange(e.target.value, e.target.name)} 
+                    type='email'
                 />
+                <FormRow 
+                    label='Name:' 
+                    name='playerName' 
+                    placeholder={playerObject?.playerName}
+                    onChange={(e) => handleChange(e.target.value, e.target.name)} 
+                    type='text'
+                />
+                <NewButton
+                    bgColor={colors.purple}
+                    text='Save Changes' 
+                    type='submit'
+                />
+                </form>
             </Styled.FormContainer>
         </Styled.Container>
     )

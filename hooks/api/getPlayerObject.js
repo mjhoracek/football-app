@@ -1,7 +1,5 @@
 import { createToken } from "./createToken";
 import axios from 'axios'
-import { getPlayer } from "./api";
-import { random } from "./api";
 
 export const getPlayerObject = async () => {
     const playerURL = 'http://localhost:5000/players';

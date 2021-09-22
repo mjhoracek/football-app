@@ -89,7 +89,7 @@ export default function Home() {
   const { currentUser, error, setError } = useAuth()
 
   if(currentUser != null){
-    router.push('/weekly-picks')
+    router.push('/home')
   }
 
   return (

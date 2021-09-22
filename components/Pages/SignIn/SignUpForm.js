@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { useAuth } from '../../../contexts/AuthContext'
 import InputField from '../../Shared/InputField'
-import MyButton from '../../../components/Shared/MyButton'
+import NewButton from '../../Shared/NewButton'
 import { createNewPlayerObject } from '../../../hooks/api/createNewPlayerObject'
 
 
@@ -106,13 +106,12 @@ function SignUpForm({ error, setError, setMessage }) {
                         handleChange(e.target.id, e.target.value)
                     }}
                     />
-                <MyButton 
+                <NewButton
+                    text='Sign Up'
                     style={{ width: "100%"  }}
                     variant="outlined" 
                     type='submit'
-                >
-                    Sign Up
-                </MyButton>
+                />
             </form>
         </Container>
     )

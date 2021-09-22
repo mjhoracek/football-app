@@ -4,10 +4,11 @@ import * as Styled from './style'
 
 import UserModule from '../Dashboard/UserModule'
 import Navbar from '../Dashboard/Navbar/index'
+import SavePicksButton from './SavePicksButton'
 
 
 
-const Dashboard = ( {children} ) => {
+const Dashboard = ({ children, header, savepicks, playerObject }) => {
 
     return (
         <Styled.Container>
@@ -15,10 +16,14 @@ const Dashboard = ( {children} ) => {
                 <Navbar />
             </Styled.LeftCol>
             <Styled.CenterCol>
+                <Styled.Header>
+                    {header}
+                </Styled.Header>
                 {children}
             </Styled.CenterCol>
             <Styled.RightCol>
                 <UserModule />
+                {savepicks && <SavePicksButton playerObject={playerObject}/>}
             </Styled.RightCol>
         </Styled.Container>
     )

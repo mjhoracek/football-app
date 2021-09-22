@@ -86,6 +86,7 @@ const SubmenuAccordian = ({
     return (
         <AccordianContainer open={open}>
 
+            {link1 &&
             <SubmenuItemContainer>
                 <IconContainer>
 
@@ -96,6 +97,7 @@ const SubmenuAccordian = ({
                     </LabelContainer>
                 </Link>
             </SubmenuItemContainer>
+            }
 
             {link2 &&
             <SubmenuItemContainer>

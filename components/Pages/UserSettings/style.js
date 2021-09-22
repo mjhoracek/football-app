@@ -17,11 +17,11 @@ export const Container = styled.div`
     padding: 5%;
     align-items: center;
     width: 90%;
-    height: 700px;
+    /* height: 700px;
     border-radius: 10px;
     margin-top: 10px;
     background: linear-gradient(180deg, #31343B 0%, #22252C 100%);
-    box-shadow: 0px 0px 37px #000000;
+    box-shadow: 0px 0px 37px #000000; */
 `
 
 export const Header = styled.p`
@@ -36,7 +36,7 @@ export const FormContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 5%;
+    padding-top: 0;
     width: 100%;
 `
 

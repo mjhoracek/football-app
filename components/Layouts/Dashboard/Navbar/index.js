@@ -6,6 +6,9 @@ import SVG from '../../../SVG'
 import SubmenuAccordian from './SubmenuAccordian'
 
 //Navbar Index
+// MenuItem holds each icon and submenu links related to that icon
+// Prop link1 refers to the link of the submenu item, and label1 is the label for that link in the submenu
+// Prop iconlink is the link for the icon itself
 //////////////////////////////
 
 
@@ -33,59 +36,35 @@ const Navbar = () => {
         <Container>
             <MenuItem
                 defaultOpen={true}
-                link1='/weekly-picks'
-                label1='Weekly Picks'
-                label2='Old ass dashboard'
-                link2='/dashboard'
+                link1='/home'
+                label1='Football Pool Home'
+                link2='/weekly-picks'
+                label2='Weekly Picks'
             >
                 <SVG.Home style={{ width: svgSize }} fill={colors.purple}/>
             </MenuItem>
             <MenuItem
                 defaultOpen={true}
-                link1='/weekly-picks'
-                label1='Weekly Picks'
-                label2='Old ass dashboard'
-                link2='/dashboard'
-                link3='/weekly-picks'
-                label3='Weekly Picks'
-                label4='Old ass dashboard'
-                link4='/dashboard'
             >
                 <SVG.Picks style={{ width: svgSize }} fill={colors.purple}/>
             </MenuItem>
             <MenuItem
                 defaultOpen={true}
-                link1='/weekly-picks'
-                label1='Weekly Picks'
-                label2='Old ass dashboard'
-                link2='/dashboard'
             >
                 <SVG.Leaderboards style={{ width: svgSize }} fill={colors.purple}/>
             </MenuItem>
             <MenuItem
                 defaultOpen={false}
-                link1='/weekly-picks'
-                label1='Weekly Picks'
-                label2='Old ass dashboard'
-                link2='/dashboard'
             >
                 <SVG.Stats style={{ width: svgSize }} fill={colors.purple}/>
             </MenuItem>
             <MenuItem
                 defaultOpen={false}
-                link1='/weekly-picks'
-                label1='Weekly Picks'
-                label2='Old ass dashboard'
-                link2='/dashboard'
             >
                 <SVG.Info style={{ width: svgSize }} fill={colors.purple}/>
             </MenuItem>
             <MenuItem
                 defaultOpen={false}
-                link1='/weekly-picks'
-                label1='Weekly Picks'
-                label2='Old ass dashboard'
-                link2='/dashboard'
             >
                 <SVG.Gear style={{ width: svgSize }} fill={colors.purple}/>
             </MenuItem>

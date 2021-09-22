@@ -23,8 +23,19 @@ export const CenterCol = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 60%;
-    
+    width: 60%; 
+`
+
+export const Header = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 30px 0;
+    height: fit-content;
+    color: white;
+    font-size: 24px;
 `
 
 export const RightCol = styled.div`
