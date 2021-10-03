@@ -1,6 +1,9 @@
 import React, { useContext, useState, useEffect } from "react"
 import firebase from "firebase/app"
 import app from '../firebase/index.js'
+import { getPlayerObject } from '../hooks/api/getPlayerObject'
+import {useDispatch} from 'react-redux'
+import {setPlayerObject} from '../redux/playerObjectSlice'
 
 app()
 
@@ -14,13 +17,10 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
-  const [token, setToken] = useState()
   const [loading, setLoading] = useState(true)
   const [error, setError ] = useState('')
-
-  // console.log('Auth Context - the user is:', firebase.auth().currentUser)
-  // const token = currentUser.getIdToken()
-
+  const dispatch = useDispatch()
+  
   function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
   }
@@ -48,10 +48,17 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user)
-
+      
+      const fetchPlayerObject = async () => {
+        const object = await getPlayerObject()
+        dispatch(setPlayerObject(object?.data[0]))
+      }
+  
+      fetchPlayerObject()
+      
       setLoading(false)
     })
-
+    
     return unsubscribe
   }, [])
 
@@ -65,7 +72,7 @@ export function AuthProvider({ children }) {
     updateEmail,
     updatePassword,
     error,
-    setError
+    setError,
   }
 
   return (

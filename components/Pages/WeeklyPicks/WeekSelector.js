@@ -8,7 +8,8 @@ const Container = styled.div`
     justify-content: flex-start;
     align-items: center;
     width: 95%;
-    height: 125px;
+    height: 80px;
+
 `
 const Header = styled.div`
     display: flex;
@@ -19,6 +20,7 @@ const Header = styled.div`
     height: 50px;
     color: white;
     size: 24px;
+    margin: 10px 0;
 `
 
 const WeeksBox = styled.div`
@@ -45,11 +47,8 @@ const Week = styled.div`
     filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.55));
 `
 
-
-
 const WeekSelector = ({week, setWeek}) => {
-
-
+    
     return (
         <Container>
             <WeeksBox>

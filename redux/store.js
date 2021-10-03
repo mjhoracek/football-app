@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import userReducer from './userSlice'
+import playerObjectReducer from './playerObjectSlice'
 import counterReducer from './counter'
-import viewReducer from './viewSlice'
+import snackbarReducer from './snackbarSlice'
 
 export const store = configureStore({
   reducer: {
       counter: counterReducer,
-      user: userReducer,
-      view: viewReducer
+      playerObject: playerObjectReducer,
+      snackbar: snackbarReducer
   },
 })

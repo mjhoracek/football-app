@@ -1,16 +1,20 @@
 import styled from 'styled-components'
-import { colors } from '../../../styles/colors'
 import * as Styled from './style'
-
 import UserModule from '../Dashboard/UserModule'
 import Navbar from '../Dashboard/Navbar/index'
-import SavePicksButton from './SavePicksButton'
+import { useSelector } from 'react-redux'
 
+const Wrapper = styled.div`
+ //for the snackbar
+`
 
+const Dashboard = ({ children, header, savepicks }) => {
+    const {snackbar} = useSelector((state) => state.snackbar)
 
-const Dashboard = ({ children, header, savepicks, playerObject }) => {
 
     return (
+        <Wrapper>
+            <Styled.Snackbar snackbar={snackbar}>Content Saved</Styled.Snackbar>
         <Styled.Container>
             <Styled.LeftCol>
                 <Navbar />
@@ -23,9 +27,9 @@ const Dashboard = ({ children, header, savepicks, playerObject }) => {
             </Styled.CenterCol>
             <Styled.RightCol>
                 <UserModule />
-                {savepicks && <SavePicksButton playerObject={playerObject}/>}
             </Styled.RightCol>
         </Styled.Container>
+        </Wrapper>
     )
 }
 

@@ -40,6 +40,8 @@ const Navbar = () => {
                 label1='Football Pool Home'
                 link2='/weekly-picks'
                 label2='Weekly Picks'
+                link3='/current-picks'
+                label3='Current Picks'
             >
                 <SVG.Home style={{ width: svgSize }} fill={colors.purple}/>
             </MenuItem>

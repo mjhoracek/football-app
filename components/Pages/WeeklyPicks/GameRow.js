@@ -2,8 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { colors } from '../../../styles/colors'
-import { useSelector, useDispatch } from 'react-redux'
-import {setUser} from '../../../redux/userSlice'
+import { useSelector } from 'react-redux'
+
 
 const Wrapper = styled.div`
     display: flex;
@@ -61,13 +61,24 @@ const Points = styled.div`
     background-color: ${colors.gray};
 `
 
-const GameRow = ({index, game, week, handleTeamSelection, handlePointsSelection }) => {
-    const {user} = useSelector((state) => state.user)
+
+const GameRow = ({index, game, week, handleTeamSelection, handlePointsSelection, numOfGames }) => {
     const [pickRadio, setPickRadio] = useState('')
+
+    useEffect(() => {
+        if(game.chosenWinner === game.hometeam) setPickRadio('home')
+        if(game.chosenWinner === game.awayteam) setPickRadio('away')
+    }, [])
+
+    let rows = [];
+        for (let i = 0; i < numOfGames; i++) {
+        rows.push(<option key={i} value={i+1}>{i+1}</option>);
+    }       
+
 
     return (
         <Wrapper>
-            {user &&
+            {true &&
                 <>
                     <TeamNameBox
                         active={pickRadio === 'away'} 
@@ -96,27 +107,16 @@ const GameRow = ({index, game, week, handleTeamSelection, handlePointsSelection 
                         <Points>
                         <select
                              name="pointsSelector"
+                             placeholder={game.points}
                              onChange={e => {
                                     handlePointsSelection(e.target.value, week, index)
                                 }}
                         >
-                            <option value="">-</option>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                            <option value={6}>6</option>
-                            <option value={7}>7</option>
-                            <option value={8}>8</option>
-                            <option value={9}>9</option>
-                            <option value={10}>10</option>
-                            <option value={11}>11</option>
-                            <option value={12}>12</option>
-                            <option value={13}>13</option>
-                            <option value={14}>14</option>
-                            <option value={15}>15</option>
-                            <option value={16}>16</option>
+                            <option value="" hidden>{game.points}</option>
+                            {/* render one row per game and make sure that point values correspond to the number of games that week */}
+                            <>
+                                {rows} 
+                            </>
                         </select>
 
                         </Points>

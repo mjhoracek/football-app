@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import { useAuth } from '../../../contexts/AuthContext'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { useSelector, useDispatch } from 'react-redux'
-import { setView } from '../../../redux/viewSlice'
+
 
 
 const Container = styled.div`

@@ -7,6 +7,7 @@ export const getPlayerObject = async () => {
     
     try {
       const res = await axios.get(playerURL, header)
+
       return res.data;
     } catch (e) {
       console.error(e);

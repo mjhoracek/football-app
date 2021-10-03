@@ -3,13 +3,6 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { colors } from '../../styles/colors'
 
-// $yellow: #FFE800
-// brown: #404040;
-// $blue: #1CD3F8;
-// 8px: 8px;
-// 4px: 4px;
-
-
 const Body = styled.button`
     top: 0;
     left: 0;

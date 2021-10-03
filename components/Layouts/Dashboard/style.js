@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from '../../../styles/colors'
 
 export const Container = styled.div` 
     display: flex;
@@ -45,4 +46,22 @@ export const RightCol = styled.div`
     align-items: center;
     width: 20%;
     height: 700px;
+`
+
+export const Snackbar = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 50%;
+    height: 70px;
+    position: absolute;
+    top: 2%;
+    left: 25%;
+    background-color: ${colors.purple};
+    color: white;
+    font-size: 24px;
+    z-index: 15;
+    opacity: ${props => props.snackbar ? 1 : 0 };
+    transition: .5s ease;
 `

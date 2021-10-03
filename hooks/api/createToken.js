@@ -9,8 +9,8 @@ export const createToken = async () => {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
-        'user': user.email,
-        'uid': user.uid,
+        'user': user?.email,
+        'uid': user?.uid,
       },
     };
     return payloadHeader;
