@@ -61,7 +61,7 @@ const WeekSelector = ({week, setWeek}) => {
                 <Week active={week === 7} onClick={() => setWeek(7)}>7</Week>
                 <Week active={week === 8} onClick={() => setWeek(8)}>8</Week>
             </WeeksBox>
-            <Header>Week {week} Picks</Header>
+            <Header>Week {week}</Header>
         </Container>
     )
 }

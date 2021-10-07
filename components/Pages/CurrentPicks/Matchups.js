@@ -19,7 +19,7 @@ const HomeVisitor = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    width: 125px;
     height: 100%;
     border-right: 1px solid ${colors.purple};
 `

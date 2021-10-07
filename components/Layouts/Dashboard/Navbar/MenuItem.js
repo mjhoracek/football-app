@@ -1,7 +1,5 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import Link from 'next/link'
-
 import SVG from '../../../SVG'
 import { colors } from '../../../../styles/colors'
 import SubmenuAccordian from './SubmenuAccordian'
@@ -42,6 +40,7 @@ export const ArrowButton = styled.div`
 
 
 const MenuItem = ({
+        numOfLinks,
         children, 
         defaultOpen,
         iconlink,
@@ -92,6 +91,7 @@ const MenuItem = ({
             </ArrowButton>
         </MenuItemContainer>
         <SubmenuAccordian 
+            numOfLinks={numOfLinks}
             open={open} 
             link1={link1} 
             link2={link2} 

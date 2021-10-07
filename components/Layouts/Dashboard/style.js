@@ -7,7 +7,6 @@ export const Container = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
-
 `
 
 export const LeftCol = styled.div`
@@ -24,7 +23,16 @@ export const CenterCol = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 60%; 
+    width: 80%; 
+    `
+    
+export const RightCol = styled.div`
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 0;
+        height: 700px;
 `
 
 export const Header = styled.div`
@@ -39,14 +47,6 @@ export const Header = styled.div`
     font-size: 24px;
 `
 
-export const RightCol = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 20%;
-    height: 700px;
-`
 
 export const Snackbar = styled.div`
     display: flex;
@@ -57,7 +57,7 @@ export const Snackbar = styled.div`
     height: 70px;
     position: absolute;
     top: 2%;
-    left: 25%;
+    left: 35%;
     background-color: ${colors.purple};
     color: white;
     font-size: 24px;

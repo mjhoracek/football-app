@@ -10,27 +10,19 @@ export const AccordianContainer = styled.div`
     padding-top: 2%;
     color: white;
     ///animation works if not 'fit content' but idk how to make it know how big the content is yet
-    height: ${props => props.open ? 'fit-content' : '0px' };
+    height: ${props => props.open ? props.boxHeight : '0px' };
     overflow: hidden;
-    transition: height 0.5s ease-in-out;
+    transition: height 0.2s ease-in-out;
 `
 
 export const SubmenuItemContainer = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
-    font-size: 12px;
+    font-size: 16px;
     color: white;
-    margin-left: 10%;
+    margin-left: 15%;
     padding: 3% 1%;
-`
-
-export const IconContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    width: 40px;
 `
 
 
@@ -38,8 +30,7 @@ export const LabelContainer = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 60%;
-    margin-left: 10%;
+    width: 100%;
     cursor: pointer;
 
     :hover{
@@ -49,6 +40,7 @@ export const LabelContainer = styled.div`
 `
 
 const SubmenuAccordian = ({ 
+    numOfLinks,
     open, 
 
     link1, 
@@ -80,17 +72,17 @@ const SubmenuAccordian = ({
 
     link10, 
     label10,
-}) => 
+}) => {
 
-{
+    const boxHeight = (numOfLinks * 40).toString() + 'px'
+    console.log(boxHeight)
+
+
     return (
-        <AccordianContainer open={open}>
+        <AccordianContainer open={open} boxHeight={boxHeight}>
 
             {link1 &&
             <SubmenuItemContainer>
-                <IconContainer>
-
-                </IconContainer>
                 <Link href={link1}>
                     <LabelContainer>
                         {label1}
@@ -101,9 +93,6 @@ const SubmenuAccordian = ({
 
             {link2 &&
             <SubmenuItemContainer>
-                <IconContainer>
-
-                </IconContainer>
                 <Link href={link2}>
                     <LabelContainer>
                         {label2}
@@ -114,9 +103,6 @@ const SubmenuAccordian = ({
 
             {link3 &&
             <SubmenuItemContainer>
-                <IconContainer>
-
-                </IconContainer>
                 <Link href={link3}>
                     <LabelContainer>
                         {label3}
@@ -127,9 +113,6 @@ const SubmenuAccordian = ({
 
             {link4 &&
             <SubmenuItemContainer>
-                <IconContainer>
-
-                </IconContainer>
                 <Link href={link4}>
                     <LabelContainer>
                         {label4}
@@ -140,9 +123,6 @@ const SubmenuAccordian = ({
 
             {link5 &&
             <SubmenuItemContainer>
-                <IconContainer>
-
-                </IconContainer>
                 <Link href={link5}>
                     <LabelContainer>
                         {label5}
@@ -153,9 +133,6 @@ const SubmenuAccordian = ({
 
             {link6 &&
             <SubmenuItemContainer>
-                <IconContainer>
-
-                </IconContainer>
                 <Link href={link6}>
                     <LabelContainer>
                         {label6}
@@ -166,9 +143,6 @@ const SubmenuAccordian = ({
 
             {link7 &&
             <SubmenuItemContainer>
-                <IconContainer>
-
-                </IconContainer>
                 <Link href={link7}>
                     <LabelContainer>
                         {label7}
@@ -179,9 +153,6 @@ const SubmenuAccordian = ({
 
             {link8 &&
             <SubmenuItemContainer>
-                <IconContainer>
-
-                </IconContainer>
                 <Link href={link8}>
                     <LabelContainer>
                         {label8}
@@ -192,9 +163,6 @@ const SubmenuAccordian = ({
 
             {link9 &&
             <SubmenuItemContainer>
-                <IconContainer>
-
-                </IconContainer>
                 <Link href={link9}>
                     <LabelContainer>
                         {label9}
@@ -205,9 +173,6 @@ const SubmenuAccordian = ({
 
             {link10 &&
             <SubmenuItemContainer>
-                <IconContainer>
-
-                </IconContainer>
                 <Link href={link10}>
                     <LabelContainer>
                         {label10}

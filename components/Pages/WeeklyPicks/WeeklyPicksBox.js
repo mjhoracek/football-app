@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setPlayerObject } from '../../../redux/playerObjectSlice'
 import styled from 'styled-components'
@@ -31,10 +31,10 @@ const GamesWrapper = styled.div`
 `
 
 const DuplicateFlag = styled.div`
-        padding: 15px 25px;
-        color: white;
-        text-align: center;
-        background-color: green;
+    padding: 15px 25px;
+    color: white;
+    text-align: center;
+    background-color: green;
 `
 
 
@@ -42,16 +42,11 @@ const WeeklyPicksBox = () => {
     const {playerObject} = useSelector(state => state.playerObject)
     const [week, setWeek] = useState(1)
     const [warning, setWarning] = useState(false)
+    const [pickWinnerWarning, setPickWinnerWarning] = useState(false)
     const [duplicates, setDuplicates] = useState([])
     const games = playerObject?.picks[`${week - 1}`]
     const numOfGames = games?.length
     const dispatch = useDispatch()
-
-    console.log(playerObject)
-
-    useEffect(() => {
-        checkForDuplicates()
-    }, [week, playerObject])
 
 
     /////////////////////////
@@ -79,11 +74,24 @@ const WeeklyPicksBox = () => {
         setDuplicates(duplicateSet)
         console.log('duplicateSet', duplicateSet)
 
-        if(duplicateSet.lenth > 0){
+        if(duplicateSet.length > 0){
             setWarning(true)
+            return true
         } else {
             setWarning(false)
+            return false
         }
+    }
+
+    const checkWinnersSelected = () => {
+            games.map(game => {
+                if(game.chosenWinner.length < 1){
+                    setPickWinnerWarning(true)
+                    return false
+                } 
+            })
+        setPickWinnerWarning(false)
+        return true
     }
 
 
@@ -109,18 +117,22 @@ const WeeklyPicksBox = () => {
     ////////////////////////////////////////////////
 
 
-
     return (
         <Container>
             <WeekSelector week={week} setWeek={setWeek} />
             <ButtonContainer>
-                <SavePicksButton />
-                {(duplicates.length > 0) && 
+                <SavePicksButton
+                    checkForDuplicates={checkForDuplicates}
+                    checkWinnersSelected={checkWinnersSelected}
+                />
+                {warning &&
                     <DuplicateFlag>
                         Duplicate point values for:
                         {duplicates.map((dup, index) => <span key={index}> {dup}  </span>)}
-                        <br/>
-                        {duplicates}
+                    </DuplicateFlag> }
+                {pickWinnerWarning &&
+                    <DuplicateFlag>
+                        Please select winners for each game
                     </DuplicateFlag> }
             </ButtonContainer>
             <GamesWrapper>

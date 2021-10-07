@@ -70,12 +70,6 @@ const GameRow = ({index, game, week, handleTeamSelection, handlePointsSelection,
         if(game.chosenWinner === game.awayteam) setPickRadio('away')
     }, [])
 
-    let rows = [];
-        for (let i = 0; i < numOfGames; i++) {
-        rows.push(<option key={i} value={i+1}>{i+1}</option>);
-    }       
-
-
     return (
         <Wrapper>
             {true &&
@@ -115,7 +109,13 @@ const GameRow = ({index, game, week, handleTeamSelection, handlePointsSelection,
                             <option value="" hidden>{game.points}</option>
                             {/* render one row per game and make sure that point values correspond to the number of games that week */}
                             <>
-                                {rows} 
+                                {[...Array(numOfGames)].map((elem, index)=> {
+                                    return (
+                                        <option key={index} value={index+1}>{index+1}</option> 
+
+                                    )
+                                })
+                                }
                             </>
                         </select>
 

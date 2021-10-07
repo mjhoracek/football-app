@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useAuth } from '../../../contexts/AuthContext'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-
+import { colors } from '../../../styles/colors'
 
 
 const Container = styled.div`
@@ -11,13 +11,9 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 95%;
+    width: 100%;
     height: 75px;
-    border-radius: 10px;
-    margin-top: 10px;
-    margin-right: 10px;
-    background: linear-gradient(180deg, #31343B 0%, #444444 100%);
-    box-shadow: 0px 0px 37px #000000;
+    border-bottom: 1px solid ${colors.purple};
     font-size: 14px;
 `
 

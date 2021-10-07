@@ -45,7 +45,6 @@ function SignUpForm({ error, setError, setMessage }) {
             const user = await signup(formInfo?.email, formInfo?.password)
             const res = await createNewPlayerObject()
             console.log('The new user email is:', user);
-            setMessage(currentUser.email)
 
         } catch (error) {
             setError(error.message)

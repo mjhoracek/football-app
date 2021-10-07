@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { teamNames } from '../../../utils/dictionaries/teamNames'
 import { colors } from '../../../styles/colors'
@@ -8,7 +9,7 @@ const Container = styled.div`
     flex-direction: row;
     width: 95%;
     height: 50px;
-    background: linear-gradient(180deg, #31343B 0%, #444444 100%);
+    background: ${props => props.highlight ? colors.purple : colors.row  };
     box-shadow: 0px 0px 37px #000000;
     border-radius: 10px;
     margin: 10px 0;
@@ -19,9 +20,10 @@ const NameBox = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    width: 125px;
     height: 100%;
-    border-right: 1px solid ${colors.purple};
+    border-right: 1px solid;
+    border-color: ${props => props.highlight ?  colors.white : colors.purple};
 `
 
 const Label = styled.p`
@@ -48,20 +50,21 @@ const TeamAbv = styled.p`
 `
 
 const PlayerPicksRow = ({player, week}) => {
+    const {playerObject} = useSelector(state => state.playerObject)
     const picks = player.picks[`${week - 1}`]
 
 
     return (
-        <Container>
-            <NameBox>
+        <Container highlight={(player.playerName == playerObject?.playerName)}>
+            <NameBox highlight={(player.playerName == playerObject?.playerName)}>
                 <Label>{player.playerName}</Label>
             </NameBox>
                 {picks &&
                     picks.map((pick, index) => {
                         return (
                             <Game key={index}>
-                                <TeamAbv>{pick.points}</TeamAbv>
-                                <TeamAbv>{teamNames[pick.chosenWinner]}</TeamAbv>
+                                {pick.points > 0 && <TeamAbv>{pick.points}</TeamAbv>}
+                                {pick.chosenWinner.length > 0 && <TeamAbv>{teamNames[pick.chosenWinner]}</TeamAbv>}
                             </Game>
                         )
                 })}
