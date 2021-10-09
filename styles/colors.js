@@ -8,5 +8,6 @@ export const colors = {
     gray : '#444445',
     purple: '#945AC1',
     background: '#22252C',
-    white: '#fff'
+    white: '#fff',
+    row: 'linear-gradient(180deg, #31343B 0%, #444444 100%)',
 }

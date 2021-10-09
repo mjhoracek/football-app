@@ -52,14 +52,17 @@ const Label = styled.p`
     padding: 10% 10%;
 `
 
-const WeeklyResultsBox = ({}) => {
+const WeeklyWinnersBox = ({}) => {
     const {playerObject} = useSelector(state => state.playerObject)
     const [week, setWeek] = useState(1)
     const [data, setData] = useState(undefined)
 
+    /////// How many winners do you want to display?
+    const numberOfWinners = 3
+
     useEffect(() => {
         const fetchPointTotals = async () => {
-            const response = await getPlayerPointTotals(week, 1000)
+            const response = await getPlayerPointTotals(week, numberOfWinners)
             console.log('response data', response.data)
             setData(response?.data)
         }
@@ -71,35 +74,29 @@ const WeeklyResultsBox = ({}) => {
         <Container>
             <WeekSelector week={week} setWeek={setWeek}/>
             <TableHead>
-                <LabelBox width='25%'>
-                    <Label>Rank</Label>
+                <LabelBox width='33%'>
+                    <Label>Place</Label>
                 </LabelBox>
-                <LabelBox width='25%'>
+                <LabelBox width='33%'>
                     <Label>Name</Label>
                 </LabelBox>
-                <LabelBox width='25%'>
+                <LabelBox width='33%'>
                     <Label>Points</Label>
-                </LabelBox>
-                <LabelBox width='25%'>
-                    <Label>Record</Label>
                 </LabelBox>
             </TableHead>
             {data &&
                     data.map((player, index) => {
                         return (
                             <Row key={index} highlight={(player._id == playerObject?.playerName)}>
-                                <LabelBox width='25%'>
+                                <LabelBox width='33%'>
                                     <Label>{index+1}</Label>
                                 </LabelBox>
-                                <LabelBox width='25%'>
+                                <LabelBox width='33%'>
                                     <Label>{player._id}</Label>
                                 </LabelBox>
-                                <LabelBox width='25%'>
+                                <LabelBox width='33%'>
                                     <Label>{player.pointTotal}</Label>
                                 </LabelBox>
-                                <LabelBox width='25%'>
-                                    <Label>-</Label>
-                                </LabelBox>  
                             </Row>
                         )
                 })}
@@ -107,4 +104,4 @@ const WeeklyResultsBox = ({}) => {
     )
 }
 
-export default WeeklyResultsBox
+export default WeeklyWinnersBox

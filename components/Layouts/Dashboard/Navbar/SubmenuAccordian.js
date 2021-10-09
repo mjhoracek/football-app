@@ -75,8 +75,6 @@ const SubmenuAccordian = ({
 }) => {
 
     const boxHeight = (numOfLinks * 40).toString() + 'px'
-    console.log(boxHeight)
-
 
     return (
         <AccordianContainer open={open} boxHeight={boxHeight}>

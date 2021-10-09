@@ -50,7 +50,7 @@ const Navbar = () => {
                 label1='Current Picks'
                 link2='/weekly-results'
                 label2='Weekly Results'
-                link3='/home'
+                link3='/weekly-winners'
                 label3='Weekly Winners'
                 numOfLinks={3}
                 >
