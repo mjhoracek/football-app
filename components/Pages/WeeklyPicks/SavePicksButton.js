@@ -10,15 +10,15 @@ const Wrapper = styled.div`
 
 `
 
-const SavePicksButton = ({checkForDuplicates, checkWinnersSelected}) => {
+const SavePicksButton = ({checkForDuplicates, checkWinnersSelected, picksComplete}) => {
     const {playerObject} = useSelector(state => state.playerObject)
     const picks = playerObject?.picks
     const dispatch = useDispatch()
 
     const handleClick = async () => {
         const duplicates = checkForDuplicates()
-        const picksComplete = checkWinnersSelected()
-        console.log('picks complete', picksComplete)
+        checkWinnersSelected()
+
         if((duplicates === false) && (picksComplete === true)){
             const response = await updatePicks(picks)
             const newPlayerObject = response?.data?.returnedObj

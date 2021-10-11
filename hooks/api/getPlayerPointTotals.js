@@ -1,4 +1,4 @@
-import { createToken } from './api/createToken';
+import { createToken } from './createToken';
 
 export const getPlayerPointTotals = async (week, limit) => {
     const playerURL = `http://localhost:5000/players/point-totals?week=${encodeURIComponent(week)}&limit=${encodeURIComponent(limit)}`;

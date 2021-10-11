@@ -61,6 +61,19 @@ const Points = styled.div`
     background-color: ${colors.gray};
 `
 
+const Select = styled.select`
+    background: ${colors.gray};
+    color: white;
+    font-size: 18px;
+    border: none;
+    font-family: inherit;
+
+    option {
+        background: ${colors.gray};
+        border: none;
+    }
+`
+
 
 const GameRow = ({index, game, week, handleTeamSelection, handlePointsSelection, numOfGames }) => {
     const [pickRadio, setPickRadio] = useState('')
@@ -99,7 +112,7 @@ const GameRow = ({index, game, week, handleTeamSelection, handlePointsSelection,
 
                     <PointsBox>
                         <Points>
-                        <select
+                        <Select
                              name="pointsSelector"
                              placeholder={game.points}
                              onChange={e => {
@@ -117,7 +130,7 @@ const GameRow = ({index, game, week, handleTeamSelection, handlePointsSelection,
                                 })
                                 }
                             </>
-                        </select>
+                        </Select>
 
                         </Points>
                     </PointsBox>

@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
-import WeekSelector from '../WeeklyPicks/WeekSelector'
 import { getPlayerPointTotals } from '../../../hooks/api/getPlayerPointTotals'
 import { colors } from '../../../styles/colors'
 
@@ -30,7 +29,7 @@ const Row = styled.div`
     flex-direction: row;
     width: 95%;
     height: 50px;
-    background: ${props => props.index === 0 ? colors.gold : props.index === 1 ? colors.silver : colors.bronze};
+    background: ${props => props.highlight ? colors.purple : colors.row  };
     box-shadow: 0px 0px 37px #000000;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -52,55 +51,54 @@ const Label = styled.p`
     padding: 10% 10%;
 `
 
-const WeeklyWinnersBox = ({}) => {
+const SeasonStandingsBox = ({ allPlayerObjects }) => {
     const {playerObject} = useSelector(state => state.playerObject)
-    const [week, setWeek] = useState(1)
-    const [data, setData] = useState(undefined)
 
-    /////// How many winners do you want to display?
-    const numberOfWinners = 3
-
-    useEffect(() => {
-        const fetchPointTotals = async () => {
-            const response = await getPlayerPointTotals(week, numberOfWinners)
-            setData(response?.data)
-        }
-
-        fetchPointTotals()
-    }, [week])
+    ////add rank key/value
+    const data = allPlayerObjects.sort(function(a, b){
+        return b.pointTotal - a.pointTotal;
+    }).map(function(e, i){
+      e.rank = (i + 1);
+      return e;
+    });
 
     return (
         <Container>
-            <WeekSelector week={week} setWeek={setWeek}/>
             <TableHead>
-                <LabelBox width='33%'>
-                    <Label>Place</Label>
+                <LabelBox width='25%'>
+                    <Label>Rank</Label>
                 </LabelBox>
-                <LabelBox width='33%'>
+                <LabelBox width='25%'>
                     <Label>Name</Label>
                 </LabelBox>
-                <LabelBox width='33%'>
+                <LabelBox width='25%'>
                     <Label>Points</Label>
+                </LabelBox>
+                <LabelBox width='25%'>
+                    <Label>Record</Label>
                 </LabelBox>
             </TableHead>
             {data &&
-                data.map((player, index) => {
-                    return (
-                        <Row key={index} index={index} highlight={(player._id == playerObject?.playerName)}>
-                            <LabelBox width='33%'>
-                                <Label>{index+1}</Label>
-                            </LabelBox>
-                            <LabelBox width='33%'>
-                                <Label>{player._id}</Label>
-                            </LabelBox>
-                            <LabelBox width='33%'>
-                                <Label>{player.pointTotal}</Label>
-                            </LabelBox>
-                        </Row>
-                    )
+                    data.map((player, index) => {
+                        return (
+                            <Row key={index} highlight={(player._id == playerObject?.playerName)}>
+                                <LabelBox width='25%'>
+                                    <Label>{player.rank}</Label>
+                                </LabelBox>
+                                <LabelBox width='25%'>
+                                    <Label>{player._id}</Label>
+                                </LabelBox>
+                                <LabelBox width='25%'>
+                                    <Label>{player.pointTotal}</Label>
+                                </LabelBox>
+                                <LabelBox width='25%'>
+                                    <Label>-</Label>
+                                </LabelBox>  
+                            </Row>
+                        )
                 })}
         </Container>
     )
 }
 
-export default WeeklyWinnersBox
+export default SeasonStandingsBox

@@ -1,30 +1,26 @@
 import Dashboard from '../components/Layouts/Dashboard'
-import CurrentPicksBox from '../components/Pages/CurrentPicks'
-import {getAllObjects} from '../services/mongodb/getAllObjects'
+import SeasonStandingsBox from '../components/Pages/Season Standings'
+import {getSeasonStandings} from '../../client/services/mongodb/getSeasonStandings'
 import {connectToDatabase} from '../utils/helpers/connectToDatabase'
 
-
-
-const CurrentPicks = ({ allPlayerObjects }) => {
-    const games = allPlayerObjects[0].picks
+const SeasonStandings = ({ allPlayerObjects }) => {
 
     return (
         <Dashboard 
-            header='Current Picks' 
+            header='Season Standings' 
             savepicks={false}
         >
-          <CurrentPicksBox allPlayerObjects={allPlayerObjects} />
+            <SeasonStandingsBox allPlayerObjects={allPlayerObjects} />
         </Dashboard>
     )
 }
 
-export default CurrentPicks
-
+export default SeasonStandings
 
 export async function getStaticProps() {
     await connectToDatabase()
 
-    const allPlayerObjects = await getAllObjects()
+    const allPlayerObjects = await getSeasonStandings()
 
     if (!allPlayerObjects) {
       return {
@@ -36,4 +32,3 @@ export async function getStaticProps() {
       props: { allPlayerObjects } , // will be passed to the page component as props
     }
   }
-

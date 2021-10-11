@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import WeekSelector from '../WeeklyPicks/WeekSelector'
-import { getPlayerPointTotals } from '../../../hooks/getPlayerPointTotals'
+import { getPlayerPointTotals } from '../../../hooks/api/getPlayerPointTotals'
 import { colors } from '../../../styles/colors'
 
 const Container = styled.div`
@@ -61,7 +61,15 @@ const WeeklyResultsBox = ({}) => {
         const fetchPointTotals = async () => {
             const response = await getPlayerPointTotals(week, 1000)
             console.log('response data', response.data)
-            setData(response?.data)
+
+            const ranked = response?.data.sort(function(a, b){
+                return b.pointTotal - a.pointTotal;
+            }).map(function(e, i){
+              e.rank = (i + 1);
+              return e;
+            });
+
+            setData(ranked)
         }
 
         fetchPointTotals()
@@ -89,7 +97,7 @@ const WeeklyResultsBox = ({}) => {
                         return (
                             <Row key={index} highlight={(player._id == playerObject?.playerName)}>
                                 <LabelBox width='25%'>
-                                    <Label>{index+1}</Label>
+                                    <Label>{player.rank}</Label>
                                 </LabelBox>
                                 <LabelBox width='25%'>
                                     <Label>{player._id}</Label>

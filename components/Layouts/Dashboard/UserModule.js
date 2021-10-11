@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 import { useAuth } from '../../../contexts/AuthContext'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -51,6 +52,7 @@ const LinkText = styled.h1`
 `
 
 const UserModule = () => {
+    const {playerObject} = useSelector(state => state.playerObject)
     const { currentUser, logout,  setError } = useAuth()
     const router = useRouter()
 
@@ -69,7 +71,7 @@ const UserModule = () => {
 
     return (
         <Container>
-            <Username>Welcome, {currentUser ? currentUser.email : 'No User'}</Username>
+            <Username>Welcome, {playerObject ? playerObject.playerName : 'No User'}</Username>
             <LinksBox>
                 <Link href="/settings">
                     <LinkText>Edit Account</LinkText>

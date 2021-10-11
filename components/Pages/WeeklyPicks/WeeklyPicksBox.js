@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setPlayerObject } from '../../../redux/playerObjectSlice'
+import {colors} from '../../../styles/colors'
 import styled from 'styled-components'
 import GameRow from './GameRow'
 import WeekSelector from './WeekSelector'
@@ -18,6 +19,7 @@ const ButtonContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     width: 100%;
 `
 
@@ -32,9 +34,12 @@ const GamesWrapper = styled.div`
 
 const DuplicateFlag = styled.div`
     padding: 15px 25px;
+    width: 30%;
+    margin-bottom: 3%;
+    border-radius: 10px;
     color: white;
     text-align: center;
-    background-color: green;
+    background-color: ${colors.red};
 `
 
 
@@ -42,12 +47,13 @@ const WeeklyPicksBox = () => {
     const {playerObject} = useSelector(state => state.playerObject)
     const [week, setWeek] = useState(1)
     const [warning, setWarning] = useState(false)
-    const [pickWinnerWarning, setPickWinnerWarning] = useState(false)
+    const [picksComplete, setPicksComplete] = useState(true)
     const [duplicates, setDuplicates] = useState([])
     const games = playerObject?.picks[`${week - 1}`]
     const numOfGames = games?.length
     const dispatch = useDispatch()
 
+    console.log('picksComplete', picksComplete)
 
     /////////////////////////
     const checkForDuplicates = () => {
@@ -72,7 +78,6 @@ const WeeklyPicksBox = () => {
         
         const duplicateSet = [...new Set(findDuplicates(pointValues))]
         setDuplicates(duplicateSet)
-        console.log('duplicateSet', duplicateSet)
 
         if(duplicateSet.length > 0){
             setWarning(true)
@@ -82,21 +87,21 @@ const WeeklyPicksBox = () => {
             return false
         }
     }
-
+    
+    console.log('picksComplete', picksComplete)
     const checkWinnersSelected = () => {
-            games.map(game => {
-                if(game.chosenWinner.length < 1){
-                    setPickWinnerWarning(true)
-                    return false
-                } 
-            })
-        setPickWinnerWarning(false)
-        return true
+        const checkGames = games.some(game => game.chosenWinner === "")
+        console.log('checkGames', checkGames)
+        if(checkGames === false){
+            setPicksComplete(true)
+        } else {
+            setPicksComplete(false)
+        }
     }
 
 
 
-        ////////////////   
+    ////////////////   
     const handleTeamSelection = (favorite, week, index) => {
         let existingPlayerObj = JSON.parse(JSON.stringify(playerObject))
 
@@ -124,13 +129,14 @@ const WeeklyPicksBox = () => {
                 <SavePicksButton
                     checkForDuplicates={checkForDuplicates}
                     checkWinnersSelected={checkWinnersSelected}
+                    picksComplete={picksComplete}
                 />
                 {warning &&
                     <DuplicateFlag>
                         Duplicate point values for:
                         {duplicates.map((dup, index) => <span key={index}> {dup}  </span>)}
                     </DuplicateFlag> }
-                {pickWinnerWarning &&
+                {!picksComplete &&
                     <DuplicateFlag>
                         Please select winners for each game
                     </DuplicateFlag> }

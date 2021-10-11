@@ -9,5 +9,9 @@ export const colors = {
     purple: '#945AC1',
     background: '#22252C',
     white: '#fff',
+    red: '#BB3030',
     row: 'linear-gradient(180deg, #31343B 0%, #444444 100%)',
+    gold: 'linear-gradient(180deg, #D8A800 0%, #444444 100%)',
+    silver: 'linear-gradient(180deg, #C2C2C2 0%, #444444 100%)',
+    bronze: 'linear-gradient(180deg, #573F00 0%, #444444 100%)',
 }

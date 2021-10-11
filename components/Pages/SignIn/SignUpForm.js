@@ -21,11 +21,12 @@ function SignUpForm({ error, setError, setMessage }) {
 
     const [formInfo, setFormInfo] = useState({
         email: "",
-        confirmEmail: "",
+        playerName: "",
         password: "",
         confirmPassword: "",
     });
-    
+
+
     const signUp = async (event) => {
         event.preventDefault()
         setError("")
@@ -33,8 +34,8 @@ function SignUpForm({ error, setError, setMessage }) {
         if( formInfo.email.length === 0) return setError('You must provide an email.')
 
         if( !validator.isEmail(formInfo.email)) return setError("You must provide a valid email.")
-        
-        if( formInfo.email !== formInfo.confirmEmail ) return setError('Email and Confirm Email must match')
+
+        if( formInfo.playerName.length === 0) return setError('You must provide a name')
 
         if( formInfo.password.length === 0) return setError('You must provide a password')
 
@@ -43,7 +44,7 @@ function SignUpForm({ error, setError, setMessage }) {
         try {
 
             const user = await signup(formInfo?.email, formInfo?.password)
-            const res = await createNewPlayerObject()
+            const res = await createNewPlayerObject(formInfo?.playerName)
             console.log('The new user email is:', user);
 
         } catch (error) {
@@ -75,9 +76,9 @@ function SignUpForm({ error, setError, setMessage }) {
                     }}
                     />
                 <InputField 
-                    type='email'
-                    id='confirmEmail'
-                    label="Confirm Email"
+                    type='text'
+                    id='playerName'
+                    label="Name"
                     variant="standard"  
                     onChange={ (e) => {
                         setError("")

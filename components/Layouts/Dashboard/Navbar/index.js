@@ -19,7 +19,7 @@ export const Container = styled.div`
     align-items: center;
     width: 90%;
     height: fit-content;
-    min-height: 850px;
+    min-height: 950px;
     border-radius: 10px;
     margin-top: 10px;
     margin-left: 10px;
@@ -58,7 +58,7 @@ const Navbar = () => {
             </MenuItem>
             <MenuItem
                 defaultOpen={false}
-                link1='/home'
+                link1='/season-standings'
                 label1='Season Standings'
                 link2='/home'
                 label2='Season Summary'
