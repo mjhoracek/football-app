@@ -1,4 +1,3 @@
-import { getToken } from "../../firebase/getToken";
 import { getCurrentUser } from "../../firebase/getCurrentUser";
 
 export const getUID = async () => {

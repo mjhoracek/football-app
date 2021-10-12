@@ -1,8 +1,9 @@
 import { createToken } from "./createToken";
 import axios from 'axios'
+import { baseURL } from "./baseURL";
 
 export const updateSettings = async ( settings ) => {
-    const playerURL = 'http://localhost:5000/players/settings';
+    const playerURL = baseURL + '/settings';
     const header = await createToken();
     const body = settings
 

@@ -1,8 +1,10 @@
 import { createToken } from "./createToken";
 import axios from 'axios'
+import {baseURL} from './baseURL';
+
 
 export const getPlayerObject = async () => {
-    const playerURL = 'http://localhost:5000/players';
+    const playerURL = baseURL;
     const header = await createToken();
     
     try {

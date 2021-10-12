@@ -1,8 +1,9 @@
 import { createToken } from "./createToken";
 import axios from 'axios'
+import { baseURL } from "./baseURL";
 
 export const updatePlayerObject = async ( newObj ) => {
-    const playerURL = 'http://localhost:5000/players';
+    const playerURL = baseURL;
     const header = await createToken();
     const body = newObj
     console.log('update sent!')

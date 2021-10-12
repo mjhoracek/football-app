@@ -1,9 +1,10 @@
 import { createToken } from './createToken'
 import axios from 'axios'
+import {baseURL} from './baseURL';
 
 
 export const createNewPlayerObject = async (playerName) => {
-    const playerURL = 'http://localhost:5000/players';
+    const playerURL = baseURL;
     const header = await createToken();
   
     const payload = {playerName : playerName};
