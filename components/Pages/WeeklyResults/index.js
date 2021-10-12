@@ -60,7 +60,7 @@ const WeeklyResultsBox = ({}) => {
     useEffect(() => {
         const fetchPointTotals = async () => {
             const response = await getPlayerPointTotals(week, 1000)
-            console.log('response data', response.data)
+            console.log('response data', response?.data)
 
             const ranked = response?.data.sort(function(a, b){
                 return b.pointTotal - a.pointTotal;
