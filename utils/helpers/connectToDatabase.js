@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const MONGODB_URI = process.env.DB_CONNECTION_STRING
+const MONGODB_URI = process.env.NEXT_PUBLIC_DB_CONNECTION_STRING
 
 if (!MONGODB_URI) {
     throw new Error(
