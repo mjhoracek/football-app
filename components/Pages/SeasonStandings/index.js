@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { getPlayerPointTotals } from '../../../api/getPlayerPointTotals'
 import { colors } from '../../../styles/colors'
 
 const Container = styled.div`
@@ -51,7 +50,7 @@ const Label = styled.p`
     padding: 10% 10%;
 `
 
-const SeasonStandingsBox = ({ allPlayerObjects }) => {
+const SeasonStandingsBox = ({ allPlayerObjects, slice, limit }) => {
     const {playerObject} = useSelector(state => state.playerObject)
 
     ////add rank key/value
@@ -78,8 +77,28 @@ const SeasonStandingsBox = ({ allPlayerObjects }) => {
                     <Label>Record</Label>
                 </LabelBox>
             </TableHead>
-            {data &&
+            {(data && !slice) &&
                     data.map((player, index) => {
+                        return (
+                            <Row key={index} highlight={(player._id == playerObject?.playerName)}>
+                                <LabelBox width='25%'>
+                                    <Label>{player.rank}</Label>
+                                </LabelBox>
+                                <LabelBox width='25%'>
+                                    <Label>{player._id}</Label>
+                                </LabelBox>
+                                <LabelBox width='25%'>
+                                    <Label>{player.pointTotal}</Label>
+                                </LabelBox>
+                                <LabelBox width='25%'>
+                                    <Label>-</Label>
+                                </LabelBox>  
+                            </Row>
+                        )
+                })}
+
+                {(data && slice) &&
+                    data.slice(0, limit).map((player, index) => {
                         return (
                             <Row key={index} highlight={(player._id == playerObject?.playerName)}>
                                 <LabelBox width='25%'>

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import {colors} from '../../../styles/colors'
 
 export const MessageContainer = styled.div`
     display: flex;
@@ -11,7 +12,7 @@ export const MessageContainer = styled.div`
     height: fit-content;
     border-radius: 10px;
     margin-top: 10px;
-    background: linear-gradient(180deg, #31343B 0%, #22252C 100%);
+    background: ${colors.row};
     box-shadow: 0px 0px 37px #000000;
     color: white;
 `

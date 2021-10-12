@@ -5,7 +5,7 @@ import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { Provider } from 'react-redux'
 import { store } from '../redux/store'
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 const queryClient = new QueryClient()
 
