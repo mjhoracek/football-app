@@ -57,7 +57,7 @@ const Navbar = () => {
                 <SVG.Picks style={{ width: svgSize }} fill={colors.purple}/>
             </MenuItem>
             <MenuItem
-                defaultOpen={false}
+                defaultOpen={true}
                 link1='/season-standings'
                 label1='Season Standings'
                 link2='/home'

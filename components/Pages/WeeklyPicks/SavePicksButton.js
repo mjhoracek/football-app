@@ -1,5 +1,5 @@
 import React from 'react'
-import { updatePicks } from '../../../hooks/api/updatePicks'
+import { updatePicks } from '../../../api/updatePicks'
 import NewButton from '../../Shared/NewButton'
 import styled from 'styled-components'
 import { useDispatch, useSelector} from 'react-redux'

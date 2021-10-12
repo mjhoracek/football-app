@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { getPlayerPointTotals } from '../../../hooks/api/getPlayerPointTotals'
+import { getPlayerPointTotals } from '../../../api/getPlayerPointTotals'
 import { colors } from '../../../styles/colors'
 
 const Container = styled.div`

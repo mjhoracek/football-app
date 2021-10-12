@@ -47,7 +47,7 @@ const WeeklyPicksBox = () => {
     const {playerObject} = useSelector(state => state.playerObject)
     const [week, setWeek] = useState(1)
     const [warning, setWarning] = useState(false)
-    const [picksComplete, setPicksComplete] = useState(true)
+    const [picksComplete, setPicksComplete] = useState(null)
     const [duplicates, setDuplicates] = useState([])
     const games = playerObject?.picks[`${week - 1}`]
     const numOfGames = games?.length
@@ -136,7 +136,7 @@ const WeeklyPicksBox = () => {
                         Duplicate point values for:
                         {duplicates.map((dup, index) => <span key={index}> {dup}  </span>)}
                     </DuplicateFlag> }
-                {!picksComplete &&
+                {picksComplete === false &&
                     <DuplicateFlag>
                         Please select winners for each game
                     </DuplicateFlag> }

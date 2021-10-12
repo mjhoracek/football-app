@@ -39,7 +39,7 @@ const Message = () => {
                 Welcome to the 2022 Football Pool!
             </MessageHeader>
             <MessageMeta>
-                Posted by: Jon Boncen, 9/6/2021
+                Posted by: Pool President, 9/6/2021
             </MessageMeta>
             <MessageBody>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dictum nec massa vel porttitor. Suspendisse potenti. Maecenas elementum erat in enim vehicula auctor. Etiam metus odio, euismod sit amet leo non, aliquam maximus erat. Aliquam tellus orci, fringilla ultrices aliquet id, eleifend et nibh. Curabitur vehicula odio ut tortor maximus, ac ullamcorper mi dignissim. Pellentesque ut turpis posuere, sagittis dui sed, posuere nisl. Nunc mollis justo at enim convallis, eget ornare mauris mollis. Curabitur id tempor metus.

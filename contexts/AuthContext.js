@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react"
 import firebase from "firebase/app"
 import app from '../firebase/index.js'
-import { getPlayerObject } from '../hooks/api/getPlayerObject'
+import { getPlayerObject } from '../api/getPlayerObject'
 import {useDispatch} from 'react-redux'
 import {setPlayerObject} from '../redux/playerObjectSlice'
 

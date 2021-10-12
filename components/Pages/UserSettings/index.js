@@ -7,7 +7,7 @@ import NewButton from '../../Shared/NewButton'
 import { setPlayerObject } from '../../../redux/playerObjectSlice'
 import { useDispatch } from 'react-redux'
 import { setSnackbar } from '../../../redux/snackbarSlice'
-import { updateSettings } from '../../../hooks/api/updateSettings'
+import { updateSettings } from '../../../api/updateSettings'
 
 
 const UserSettings = () => {

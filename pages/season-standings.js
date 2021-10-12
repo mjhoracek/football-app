@@ -1,5 +1,5 @@
 import Dashboard from '../components/Layouts/Dashboard'
-import SeasonStandingsBox from '../components/Pages/Season Standings'
+import SeasonStandingsBox from '../components/Pages/SeasonStandings'
 import {getSeasonStandings} from '../../client/services/mongodb/getSeasonStandings'
 import {connectToDatabase} from '../utils/helpers/connectToDatabase'
 

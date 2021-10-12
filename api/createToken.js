@@ -1,5 +1,5 @@
-import { getToken } from "../../firebase/getToken";
-import { getCurrentUser } from "../../firebase/getCurrentUser";
+import { getToken } from '../firebase/getToken'
+import { getCurrentUser } from "../firebase/getCurrentUser";
 
 export const createToken = async () => {
     const user = getCurrentUser();

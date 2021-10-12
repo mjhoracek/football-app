@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { useAuth } from '../../../contexts/AuthContext'
 import InputField from '../../Shared/InputField'
 import NewButton from '../../Shared/NewButton'
-import { createNewPlayerObject } from '../../../hooks/api/createNewPlayerObject'
+import { createNewPlayerObject } from "../../../api/createNewPlayerObject"
 
 
 
