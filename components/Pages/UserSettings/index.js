@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import * as Styled from './style'
-import FormRow from './Formrow'
+import FormRow from './FormRow'
 import { colors } from '../../../styles/colors'
 import NewButton from '../../Shared/NewButton'
 import { setPlayerObject } from '../../../redux/playerObjectSlice'
