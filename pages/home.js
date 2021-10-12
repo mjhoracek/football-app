@@ -1,7 +1,7 @@
 import React from 'react'
 import Dashboard from '../components/Layouts/Dashboard'
 import Home from '../components/Pages/Home/index'
-import {getSeasonStandings} from '../../client/services/mongodb/getSeasonStandings'
+import { getSeasonStandings } from '../services/mongodb/getSeasonStandings'
 import {connectToDatabase} from '../utils/helpers/connectToDatabase'
 
 
