@@ -12,13 +12,9 @@ Enjoy!
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-If you'd like to clone into this repository:
-
-First, run the development server:
+If you'd like to clone into this repository and run the development server, hit these commands and open [http://localhost:8080](http://localhost:8080) with your browser to see the result:
 
 ```bash
 npm i
 npm run start
 ```
-
-Open [http://localhost:8080](http://localhost:8080) with your browser to see the result.
