@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const MONGODB_URI = `mongodb+srv://${process.env.NEXT_PUBLIC_DB_USER}:${process.env.NEXT_PUBLIC_DB_PASSWORD}@cluster0.90jzg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+const MONGODB_URI = process.env.DB_CONNECTION_STRING
 
 if (!MONGODB_URI) {
     throw new Error(

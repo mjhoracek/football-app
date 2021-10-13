@@ -16,7 +16,6 @@ const CurrentPicksBox = ({allPlayerObjects}) => {
     const [week, setWeek] = useState(1)
     const schedule = allPlayerObjects[0].picks
 
-
     return (
         <Container>
             <WeekSelector week={week} setWeek={setWeek}/>

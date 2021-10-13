@@ -6,7 +6,6 @@ import {connectToDatabase} from '../utils/helpers/connectToDatabase'
 
 
 const CurrentPicks = ({ allPlayerObjects }) => {
-    const games = allPlayerObjects[0].picks
 
     return (
         <Dashboard 
