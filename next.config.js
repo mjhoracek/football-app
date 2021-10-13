@@ -5,7 +5,7 @@
   /* config options here */
   reactStrictMode: true,
   trailingSlash: true,
-  target: "experimental-serverless-trace",
+  target: "serverless",
 }
 
 module.exports = nextConfig
