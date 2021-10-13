@@ -1,6 +1,6 @@
 import { createToken } from "./createToken";
 import axios from 'axios'
-import baseURL from './baseURL';
+import {baseURL} from './baseURL';
 
 
 export const updatePicks = async ( picksArray ) => {
