@@ -16,7 +16,7 @@ export const getSeasonStandings = async () => {
           }
         }, {
           '$match': {
-            'picks.wasPickCorrect': false
+            'picks.wasPickCorrect': true
           }
         }, {
           '$group': {

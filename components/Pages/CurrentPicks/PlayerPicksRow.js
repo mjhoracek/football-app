@@ -43,7 +43,7 @@ const Game = styled.div`
 `
 
 const TeamAbv = styled.p`
-    color: white;
+    color: ${props => props.correct === true ? colors.lightGreen : props.correct === false ? colors.lightRed : colors.white};
     font-size: 14px;
     text-align: center;
     padding: 3px 3px;
@@ -53,6 +53,7 @@ const PlayerPicksRow = ({player, week}) => {
     const {playerObject} = useSelector(state => state.playerObject)
     const picks = player.picks[`${week - 1}`]
 
+    
 
     return (
         <Container highlight={(player.playerName == playerObject?.playerName)}>
@@ -63,8 +64,10 @@ const PlayerPicksRow = ({player, week}) => {
                     picks.map((pick, index) => {
                         return (
                             <Game key={index}>
-                                {pick.points > 0 && <TeamAbv>{pick.points}</TeamAbv>}
-                                {pick.chosenWinner.length > 0 && <TeamAbv>{teamNames[pick.chosenWinner]}</TeamAbv>}
+                                {pick.points > 0 && pick.wasPickCorrect === true && <TeamAbv correct={true}>{pick.points}</TeamAbv>}
+                                {pick.points > 0 && pick.wasPickCorrect === false && <TeamAbv correct={false}>{pick.points}</TeamAbv>}
+                                {pick.chosenWinner.length > 0 && pick.wasPickCorrect === true   &&  <TeamAbv correct={true} >{teamNames[pick.chosenWinner]}</TeamAbv>}
+                                {pick.chosenWinner.length > 0 && pick.wasPickCorrect === false  &&  <TeamAbv correct={false}>{teamNames[pick.chosenWinner]}</TeamAbv>}
                             </Game>
                         )
                 })}
