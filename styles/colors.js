@@ -15,5 +15,5 @@ export const colors = {
     silver: 'linear-gradient(180deg, #C2C2C2 0%, #444444 100%)',
     bronze: 'linear-gradient(180deg, #573F00 0%, #444444 100%)',
     lightRed: '#FF7676',
-    lightGreen: '#42EC33',
+    lightGreen: '#42EC33'
 }

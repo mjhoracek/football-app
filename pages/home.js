@@ -3,9 +3,12 @@ import Dashboard from '../components/Layouts/Dashboard'
 import Home from '../components/Pages/Home/index'
 import { getSeasonStandings } from '../services/mongodb/getSeasonStandings'
 import {connectToDatabase} from '../utils/helpers/connectToDatabase'
+import { useRouter } from 'next/router'
 
 
 const Homepage  = ({ allPlayerObjects }) => {
+
+
     return (
         <div>
             <Dashboard header='Welcome to the Football Pool'>

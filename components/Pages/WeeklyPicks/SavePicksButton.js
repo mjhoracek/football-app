@@ -15,6 +15,8 @@ const SavePicksButton = ({checkForDuplicates, checkWinnersSelected, picksComplet
     const picks = playerObject?.picks
     const dispatch = useDispatch()
 
+    console.log('picks', picks)
+
     const handleClick = async () => {
         const duplicates = checkForDuplicates()
         checkWinnersSelected()

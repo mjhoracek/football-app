@@ -53,8 +53,6 @@ const WeeklyPicksBox = () => {
     const numOfGames = games?.length
     const dispatch = useDispatch()
 
-    console.log('picksComplete', picksComplete)
-
     /////////////////////////
     const checkForDuplicates = () => {
         let pointValues = []

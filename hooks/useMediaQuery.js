@@ -15,5 +15,9 @@ export default function useMediaQuery(query) {
     return () => media.removeListener(listener);
   }, [matches, query]);
 
+  //disabled if return false
+  return false;
+  
   return matches;
+
 }

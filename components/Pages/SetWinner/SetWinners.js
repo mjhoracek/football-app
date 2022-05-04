@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import GameRow from './GameRow'
 import WeekSelector from '../WeeklyPicks/WeekSelector'
 import SavePicksButton from '../WeeklyPicks/SavePicksButton'
+import NewButton from '../../Shared/NewButton'
+import { updateWinner } from '../../../api/updateWinner'
 
 const Container = styled.div`
     display: flex;
@@ -49,25 +51,20 @@ const SetWinnersBox = () => {
     const games = playerObject?.picks[`${week - 1}`]
     const [winners, setWinners] = useState([])
 
-    console.log('winners' ,winners)
-
-    ////////////////   
-    const handleTeamSelection = (favorite, index) => {
-        let arr = winners
-        arr[index] = favorite
-        setWinners(arr)
-    }
-    //////////////////////////
     
+    const handleClick = () => {
+        console.log('works')
+        updateWinner( 'mitchell', 0, 0)
+    }
 
 
     return (
         <Container>
             <WeekSelector week={week} setWeek={setWeek} />
             <ButtonContainer>
-                <SavePicksButton/>
+                <NewButton text='Save winner' onClick={() => handleClick()}/>
             </ButtonContainer>
-            <GamesWrapper>
+            {/* <GamesWrapper>
             { games &&
                 games.map((game, index) => (
                     <GameRow
@@ -79,7 +76,7 @@ const SetWinnersBox = () => {
                     />
                 ))
             }  
-            </GamesWrapper>
+            </GamesWrapper> */}
 
         </Container>
     )
